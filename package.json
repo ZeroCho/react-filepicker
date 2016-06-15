@@ -1,0 +1,49 @@
+{
+  "name": "react-filestack",
+  "version": "0.1.0",
+  "main": "index.js",
+  "description": "react component for filestack(filepicker)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && webpack",
+    "prepublish": "npm run build",
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zerocho/react-filestack.git"
+  },
+  "keywords": [
+    "filestack",
+    "filepicker",
+    "react",
+    "uploader",
+    "upload",
+    "file",
+    "image"
+  ],
+  "author": "ZeroCho",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zerocho/react-filestack/issues"
+  },
+  "homepage": "https://github.com/zerocho/react-filestack#readme",
+  "dependencies": {
+    "filepicker-js": "^2.4.11"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "eslint": "^2.12.0",
+    "eslint-plugin-babel": "^3.2.0",
+    "eslint-plugin-react": "^5.1.1",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.5.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1"
+  }
+}
