@@ -14,15 +14,20 @@ In ES2015
 import ReactFilestack from 'react-filestack';
 ```
 ## Use
+default widget
 ```
 <ReactFilestack apiKey={Your API Key} />
 ```
+custom button
+```
+<ReactFilestack apiKey={Your API Key} defaultWidget={false} buttonText="Pick" buttonClassName="filestack" />
+```
 ## Props
 ### apiKey
-required. A key for filestack
+required string. A key for filestack
 ### defaultWidget
-optional. default true. choose between the default widget and the custom button
+optional boolean. default true. choose between the default widget and the custom button
 ### buttonText
-optional. When using custom button, you can set your own text.
+optional string. When using custom button, you can set your own text.
 ### buttonClassName
-optional. When using custom button, you can set className.
+optional string. When using custom button, you can set className.

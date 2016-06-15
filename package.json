@@ -2,7 +2,7 @@
   "name": "react-filestack",
   "version": "0.1.1",
   "main": "index.js",
-  "description": "react component for filestack(filepicker)",
+  "description": "react component for filestack(previously filepicker)",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && webpack",
@@ -28,6 +28,7 @@
     "url": "https://github.com/zerocho/react-filestack/issues"
   },
   "homepage": "https://github.com/zerocho/react-filestack#readme",
+
   "dependencies": {
     "filepicker-js": "^2.4.11"
   },
@@ -45,5 +46,9 @@
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1"
+  },
+  "peerDependencies": {
+    "react": "0.14.x || 15.x.x",
+    "react-dom": "0.14.x || 15.x.x"
   }
 }
