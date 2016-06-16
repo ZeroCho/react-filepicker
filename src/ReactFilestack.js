@@ -13,7 +13,7 @@ export default class ReactFilestack extends Component {
   render() {
     if (this.props.defaultWidget) {
       return (
-        <input type="filepicker" ref="filestack" data-fp-apikey={this.props.apiKey} />
+        <input type="filepicker" data-fp-apikey={this.props.apiKey} />
       )
     } else {
       return (

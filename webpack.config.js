@@ -27,6 +27,11 @@ module.exports = [{
         warnings: false
       }
     }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
     new webpack.ProvidePlugin({
       filepicker: 'filepicker-js',
       'window.filepicker': 'filepicker-js'
@@ -45,6 +50,11 @@ module.exports = [{
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
+      }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
       }
     }),
     new webpack.ProvidePlugin({
