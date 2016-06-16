@@ -35,7 +35,7 @@ optional string. When using custom button, you can set className.
 ## Contribute
 Please contribute to this package(via Pull Request), or, you can open issues! 
 ## Future
-render on **server side**(The main reason I made this package but failed).
-add methods other than pick()
+Render on **server side**(The main reason I made this package but failed).
+Add methods other than pick()
 ## License
 MIT

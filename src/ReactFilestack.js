@@ -1,5 +1,5 @@
+require('imports?filepicker=filepicker-js!./ReactFilestack');
 import React, { Component, PropTypes } from 'react';
-import filepicker from 'filepicker-js';
 export default class ReactFilestack extends Component {
   constructor(props) {
     super(props);

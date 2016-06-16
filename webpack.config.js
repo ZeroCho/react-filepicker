@@ -1,5 +1,4 @@
 var path = require('path');
-
 var loaders = [
   { test: /\.js$/, loader: 'babel' },
   {

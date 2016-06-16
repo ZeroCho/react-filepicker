@@ -28,7 +28,6 @@
     "url": "https://github.com/zerocho/react-filestack/issues"
   },
   "homepage": "https://github.com/zerocho/react-filestack#readme",
-
   "dependencies": {
     "filepicker-js": "^2.4.11"
   },
@@ -42,6 +41,7 @@
     "eslint": "^2.12.0",
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-react": "^5.1.1",
+    "imports-loader": "^0.6.5",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
