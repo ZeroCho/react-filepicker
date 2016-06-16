@@ -19,6 +19,10 @@ module.exports = [{
     libraryTarget: 'commonjs2'
   },
   module: { loaders: loaders },
+  externals: {
+    react: 'react',
+    'react-dom': 'react-dom',
+  },
   plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
