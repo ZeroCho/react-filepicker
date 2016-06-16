@@ -3,21 +3,14 @@ export default class ReactFilestack extends Component {
   constructor(props) {
     super(props);
     this.onClickPick = this.onClickPick.bind(this);
-    this.state = {
-      initiated: false
-    }
   }
 
   componentDidMount() {
     const button = document.getElementsByName('filestack')[0];
-    if (!button && !this.state.initiated) {
-      this.setState({
-        initiated: true,
-      });
+    if (!button) {
       const element = document.getElementById('constructed-widget');
-      console.log(element, this.state.initiated);
       element.type = 'filepicker';
-      element.setAttribute('data-fp-apikey', this.props.apikey);
+      element.setAttribute('data-fp-apikey', this.props.apiKey);
       element.setAttribute('data-fp-button-text', this.props.buttonText || 'Pick File');
       element.setAttribute('data-fp-button-class', this.props.buttonClass || 'fp__btn');
       element.onchange = function (e) {
