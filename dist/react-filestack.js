@@ -90,7 +90,6 @@ module.exports =
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log(_filepickerJs2.default, this.props.apiKey);
 	      if (this.props.defaultWidget) {
 	        return _react2.default.createElement('input', { type: 'filepicker', ref: 'filestack', 'data-fp-apikey': this.props.apiKey });
 	      } else {

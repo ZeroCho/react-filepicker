@@ -68,6 +68,11 @@
 	    'div',
 	    null,
 	    _react2.default.createElement(
+	      'a',
+	      { href: 'https://github.com/zerocho/react-filestack' },
+	      'github link'
+	    ),
+	    _react2.default.createElement(
 	      'div',
 	      null,
 	      'DefaultWidget'
@@ -20462,7 +20467,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log(_filepickerJs2.default, this.props.apiKey);
 	      if (this.props.defaultWidget) {
 	        return _react2.default.createElement('input', { type: 'filepicker', ref: 'filestack', 'data-fp-apikey': this.props.apiKey });
 	      } else {

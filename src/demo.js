@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var apiKey = 'Your App Key';
   ReactDOM.render(
     <div>
+      <a href="https://github.com/zerocho/react-filestack">github link</a>
       <div>DefaultWidget</div>
       <ReactFilestack apiKey={apiKey} />
       <br />
