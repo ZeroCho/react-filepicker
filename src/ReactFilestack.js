@@ -1,40 +1,54 @@
 import React, { Component, PropTypes } from 'react';
-export default class ReactFilestack extends Component {
+class ReactFilestack extends Component {
   constructor(props) {
     super(props);
     this.onClickPick = this.onClickPick.bind(this);
   }
 
   componentDidMount() {
-    const button = document.getElementsByName('filestack')[0];
+    const { apiKey, buttonText, buttonClass, onFileUploaded, options } = this.props;
+    const button = this.refs.fpButton;
     if (!button) {
-      const element = document.getElementById('constructed-widget');
+      const element = this.refs.target;
       element.type = 'filepicker';
-      element.setAttribute('data-fp-apikey', this.props.apiKey);
-      element.setAttribute('data-fp-button-text', this.props.buttonText || 'Pick File');
-      element.setAttribute('data-fp-button-class', this.props.buttonClass || 'fp__btn');
+      element.setAttribute('data-fp-apikey', apiKey);
+      element.setAttribute('data-fp-button-text', buttonText || 'Pick File');
+      element.setAttribute('data-fp-button-class', buttonClass || 'fp__btn');
       element.onchange = function (e) {
-        console.log(JSON.stringify(e.fpfile));
+        if (typeof onFileUploaded === 'function') {
+          onFileUploaded(e.fpfile);
+        } else {
+          console.log(JSON.stringify(e.fpfile));
+        }
       };
       filepicker.constructWidget(element);
+      element.type = '';
     }
   }
 
   onClickPick(e) {
+    const { apiKey, onFileUploaded, options } = this.props;
     e.preventDefault();
     e.stopPropagation();
-    filepicker.setKey(this.props.apiKey);
-    filepicker.pick();
+    filepicker.setKey(apiKey);
+    filepicker.pick(function(Blob) {
+      if (typeof onFileUploaded === 'function') {
+        onFileUploaded(Blob);
+      } else {
+        console.log(JSON.stringify(Blob));
+      }
+    });
   }
 
   render() {
     if (this.props.defaultWidget) {
       return (
-        <input id="constructed-widget" />
+        <input ref="target" />
       )
     } else {
       return (
-        <button name="filestack" onClick={this.onClickPick} className={this.props.buttonClass}>{this.props.buttonText}</button>
+        <button name="filestack" ref="fpButton" onClick={this.onClickPick}
+                className={this.props.buttonClass}>{this.props.buttonText}</button>
       )
     }
   }
@@ -46,8 +60,12 @@ ReactFilestack.defaultProps = {
 };
 
 ReactFilestack.propTypes = {
+  options: PropTypes.object,
   apiKey: PropTypes.string.isRequired,
   defaultWidget: PropTypes.bool,
   buttonText: PropTypes.string,
   buttonClass: PropTypes.string,
+  onFileUploaded: PropTypes.func,
 };
+
+export default ReactFilestack;
