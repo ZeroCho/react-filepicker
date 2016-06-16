@@ -1,7 +1,8 @@
 # React Filestack
 react component for **filestack**(previously **filepicker**) button
-![filestack](https://cloud.githubusercontent.com/assets/10962668/16107045/8d957838-33d4-11e6-91bb-bccc700af2de.png)
+
 ## How to install
+![filestack](https://cloud.githubusercontent.com/assets/10962668/16107045/8d957838-33d4-11e6-91bb-bccc700af2de.png)
 ```
 npm install react-filestack
 ```
