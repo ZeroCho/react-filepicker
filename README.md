@@ -31,7 +31,10 @@ optional boolean. default true. choose between the default widget and the custom
 optional string. When using custom button, you can set your own text.
 ### buttonClassName
 optional string. When using custom button, you can set className.
-### Contribute
-Please contribute to this package. I want it to render on server side 
-### License
+## Contribute
+Please contribute to this package(via Pull Request), or, you can open issues! 
+## Future
+render on **server side**(The main reason I made this package but failed).
+add methods other than pick()
+## License
 MIT

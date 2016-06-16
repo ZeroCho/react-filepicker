@@ -67,7 +67,19 @@
 	  _reactDom2.default.render(_react2.default.createElement(
 	    'div',
 	    null,
+	    _react2.default.createElement(
+	      'div',
+	      null,
+	      'DefaultWidget'
+	    ),
 	    _react2.default.createElement(_ReactFilestack2.default, { apiKey: apiKey }),
+	    _react2.default.createElement('br', null),
+	    _react2.default.createElement('br', null),
+	    _react2.default.createElement(
+	      'div',
+	      null,
+	      'Custom button(You can put className on the button to style)'
+	    ),
 	    _react2.default.createElement(_ReactFilestack2.default, { apiKey: apiKey, defaultWidget: false })
 	  ), rootNode);
 	});

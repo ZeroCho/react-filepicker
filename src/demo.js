@@ -8,7 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   var apiKey = 'Your App Key';
   ReactDOM.render(
     <div>
+      <div>DefaultWidget</div>
       <ReactFilestack apiKey={apiKey} />
+      <br />
+      <br />
+      <div>Custom button(You can put className on the button to style)</div>
       <ReactFilestack apiKey={apiKey} defaultWidget={false} />
     </div>,
     rootNode
