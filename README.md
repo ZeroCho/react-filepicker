@@ -24,7 +24,7 @@ Default FileStack widget
 
 Custom Designed button
 ```
-<ReactFilestack apiKey={Your API Key} defaultWidget={false} buttonText="Pick" buttonClassName="filestack" />
+<ReactFilestack apiKey={Your API Key} defaultWidget={false} buttonText="Pick" buttonClass="filestack" />
 ```
 
 make your own callback function, connect it and get results(fpfiles or blob object)
