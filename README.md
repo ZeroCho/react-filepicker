@@ -31,3 +31,7 @@ optional boolean. default true. choose between the default widget and the custom
 optional string. When using custom button, you can set your own text.
 ### buttonClassName
 optional string. When using custom button, you can set className.
+### Contribute
+Please contribute to this package. I want it to render on server side 
+### License
+MIT

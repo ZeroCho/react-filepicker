@@ -7,7 +7,6 @@ export default class ReactFilestack extends Component {
   }
 
   onClickPick() {
-    console.log(this);
     filepicker.setKey(this.props.apiKey);
     filepicker.pick();
   }

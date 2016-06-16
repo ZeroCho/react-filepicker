@@ -63,7 +63,13 @@
 	document.addEventListener('DOMContentLoaded', function () {
 	  var rootNode = document.createElement('div');
 	  document.body.appendChild(rootNode);
-	  _reactDom2.default.render(_react2.default.createElement(_ReactFilestack2.default, { apiKey: 'Your App Key' }), rootNode);
+	  var apiKey = 'Your App Key';
+	  _reactDom2.default.render(_react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(_ReactFilestack2.default, { apiKey: apiKey }),
+	    _react2.default.createElement(_ReactFilestack2.default, { apiKey: apiKey, defaultWidget: false })
+	  ), rootNode);
 	});
 
 /***/ },
@@ -20438,7 +20444,6 @@
 	  _createClass(ReactFilestack, [{
 	    key: 'onClickPick',
 	    value: function onClickPick() {
-	      console.log(this);
 	      _filepickerJs2.default.setKey(this.props.apiKey);
 	      _filepickerJs2.default.pick();
 	    }

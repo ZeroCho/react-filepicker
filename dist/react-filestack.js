@@ -84,7 +84,6 @@ module.exports =
 	  _createClass(ReactFilestack, [{
 	    key: 'onClickPick',
 	    value: function onClickPick() {
-	      console.log(this);
 	      _filepickerJs2.default.setKey(this.props.apiKey);
 	      _filepickerJs2.default.pick();
 	    }
