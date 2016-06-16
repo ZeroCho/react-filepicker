@@ -1,6 +1,6 @@
 {
   "name": "react-filestack",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "main": "dist/react-filestack.js",
   "description": "react component for filestack(previously filepicker)",
   "scripts": {
@@ -20,7 +20,9 @@
     "uploader",
     "upload",
     "file",
-    "image"
+    "image",
+    "ssr",
+    "server"
   ],
   "author": "ZeroCho",
   "license": "MIT",

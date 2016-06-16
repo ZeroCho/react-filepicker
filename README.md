@@ -25,20 +25,19 @@ custom button
 ```
 ## Props
 ### apiKey
-required string. A key for filestack
+**required** string. A key for filestack
 ### defaultWidget
-optional boolean. default true. choose between the default widget and the custom button
+**optional** boolean. **default** true. choose between the default widget and the custom button
 ### buttonText
-optional string. When using custom button, you can set your own text. Will be included in options prop.
+**optional** string. **default** Pick File. When using custom button, you can set your own text. Will be included in **options** prop.
 ### buttonClass
-optional string. When using custom button, you can set className. Will be included in options prop.
+**optional** string. When using custom button, you can set className. Will be included in **options** prop.
 ### options(not possible now)
-optional object. Detailed options for button. Will be added at v0.3.0
+**optional** object. Detailed options for button. Will be added at v0.3.0
 
 ## Contribute
 Please contribute to this package(via Pull Request), or, you can open issues! 
 ## Future
-Render on **server side**(The main reason I made this package but failed).
 Add methods other than pick()
 Add options for button
 ## License
