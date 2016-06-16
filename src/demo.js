@@ -9,12 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <div>
       <a href="https://github.com/zerocho/react-filestack">github link</a>
-      <div>DefaultWidget</div>
-      <ReactFilestack apiKey={apiKey} />
+      <form>
+        <div>DefaultWidget</div>
+        <ReactFilestack apiKey={apiKey} buttonText="Pick!"/>
+      </form>
       <br />
       <br />
-      <div>Custom button(You can put className on the button to style)</div>
-      <ReactFilestack apiKey={apiKey} defaultWidget={false} />
+      <form>
+        <div>Custom button(You can put className on the button to style)</div>
+        {/*<ReactFilestack apiKey={apiKey} defaultWidget={false} />*/}
+      </form>
     </div>,
     rootNode
   );
