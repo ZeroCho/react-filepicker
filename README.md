@@ -1,6 +1,6 @@
 # React Filestack
 react component for **filestack**(previously **filepicker**) button
-
+![filestack](https://cloud.githubusercontent.com/assets/10962668/16107045/8d957838-33d4-11e6-91bb-bccc700af2de.png)
 ## How to install
 ```
 npm install react-filestack
@@ -13,7 +13,7 @@ In ES2015
 ```
 import ReactFilestack from 'react-filestack';
 ```
-## Use
+## Usage
 default widget
 ```
 <ReactFilestack apiKey={Your API Key} />
@@ -31,6 +31,7 @@ optional boolean. default true. choose between the default widget and the custom
 optional string. When using custom button, you can set your own text.
 ### buttonClassName
 optional string. When using custom button, you can set className.
+
 ## Contribute
 Please contribute to this package(via Pull Request), or, you can open issues! 
 ## Future
