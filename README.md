@@ -62,13 +62,13 @@ git clone this project and open index.html
 ### apiKey
 **deprecated**. Changed to **apikey** for correspondence with filestack doc.
 ### buttonText
-**optional** string. **default** 'Pick File'. When using custom button, you can set your own text. Will be included in **options** prop and deprecated.
+**deprecated**. When using custom button, you can set your own text. Will be included in **options** prop and deprecated.
 ### buttonClass
-**optional** string. When using custom button, you can set className. Will be included in **options** prop and deprecated.
+**deprecated**. When using custom button, you can set className. Will be included in **options** prop and deprecated.
 ### onFilesUploaded
-**optional** function. **Not available now.**
+**optional** function. **Not available now.** 0.4.0
 ### onError
-**optional** function. **Not available now**
+**optional** function. **Not available now** 0.4.0
 
 ## Wanna Contribute?
 Please contribute to this package via **Pull Request**, or you can open **Issues**! 
