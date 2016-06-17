@@ -15,51 +15,67 @@ In ES2015
 import ReactFilestack from 'react-filestack';
 ```
 ## Usage
-You should register [Filestack(filepicker)](https://www.filestack.com) and get API key first!
+You should register for [Filestack(filepicker)](https://www.filestack.com) and get an **API key** first!
 
 Default FileStack widget
 ```
-<ReactFilestack apiKey={Your API Key} onFileUploaded={this.yourCallbackFunction}/>
+<ReactFilestack apikey={Your API Key} onFileUploaded={this.yourCallbackFunction}/>
 ```
 
 Custom Designed button
 ```
-<ReactFilestack apiKey={Your API Key} defaultWidget={false} buttonText="Pick" buttonClass="filestack" />
+<ReactFilestack apikey={Your API Key} defaultWidget={false} options={options} onFileUploaded={this.yourCallbackFunction} />
 ```
 
-make your own callback function, connect it and get results(fpfiles or blob object)
+make your own options and callback function, connect it and get results(fpfiles or blob object)
 ```
+const options = {
+  buttonText: 'Pick Me',
+  buttonClass: 'filestack',
+  mimetype: 'image/*',
+  container: 'window',
+  services: ['COMPUTER', 'FACEBOOK', 'CLOUDAPP']
+};
 yourCallbackFunction(fpfiles) {
   // handle fpfiles or blob object
 }
 ```
 ## Result
-![filestack](https://cloud.githubusercontent.com/assets/10962668/16107045/8d957838-33d4-11e6-91bb-bccc700af2de.png)
+![filestack](https://cloud.githubusercontent.com/assets/10962668/16159308/033281ac-34fd-11e6-9b07-aab69893997a.png)
 ## Demo
-[Link](https://github.com/zerocho/react-filestack/blob/master/src/demo.js)
+git clone this project and open index.html
+[Link](https://github.com/zerocho/react-filestack/blob/master/index.html)
 
 ## Props
-
-### apiKey
+[Official Filestack Documentation](https://filestack.com/docs)
+### mode
+**optional** string. **default** 'pick'. **options** `['pick', 'dragdrop', 'convert']`
+### apikey
 **required** string. An API key for filestack
 ### defaultWidget
 **optional** boolean. **default** true. choose between the default widget and the custom button
 ### onFileUploaded
-**optional** function. get result(fpfiles or blob object) after upload is done.
+**optional** function. get result(fpfiles or blob object) after upload is done. Will be changed to **onFilesUploaded** for correspondence with filestack doc.
+### options
+**optional** object. Detailed options for button. See official documentation.
+------------------------------------------------------------------------------------------------------
+### apiKey
+**deprecated**. Changed to **apikey** for correspondence with filestack doc.
 ### buttonText
-**optional** string. **default** Pick File. When using custom button, you can set your own text. Will be included in **options** prop and deprecated.
+**optional** string. **default** 'Pick File'. When using custom button, you can set your own text. Will be included in **options** prop and deprecated.
 ### buttonClass
 **optional** string. When using custom button, you can set className. Will be included in **options** prop and deprecated.
-### options(not possible now)
-**optional** object. Detailed options for button. Will be added at v0.3.0
+### onFilesUploaded
+**optional** function. **Not available now.**
+### onError
+**optional** function. **Not available now**
 
-## Contribute
-Please contribute to this package(via Pull Request), or, you can open issues! 
+## Wanna Contribute?
+Please contribute to this package via **Pull Request**, or you can open **Issues**! 
 
 ## Future
 - server side rendering
-- Add methods other than pick()
-- Add options for button
+- add other methods than pick and pickAndMultiple
 
 ## License
 MIT

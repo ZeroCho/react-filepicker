@@ -5,7 +5,7 @@ var loaders = [
   {
     test: /\.css/, exclude: /\.global\.css/,
     loaders: [
-      'style?sourcemap', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+      'style?sourcemap', 'css?modules&importLoaders=1'
     ]
   },
   { test: /\.global\.css/, loader: 'style!raw' }
@@ -22,6 +22,7 @@ module.exports = [{
   externals: {
     react: 'react',
     'react-dom': 'react-dom',
+    'filepicker-js': 'filepicker'
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),

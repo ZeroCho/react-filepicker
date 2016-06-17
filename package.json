@@ -1,11 +1,11 @@
 {
   "name": "react-filestack",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "main": "dist/react-filestack.js",
   "description": "react component for filestack(previously filepicker)",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf dist && webpack",
+    "build": "rimraf dist && webpack --progess --colors --watch --debug --ouput-pathinfo --display-error-details",
     "prepublish": "npm run build",
     "lint": "eslint"
   },

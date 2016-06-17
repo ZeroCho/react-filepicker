@@ -1,19 +1,36 @@
 import React, { Component, PropTypes } from 'react';
+import applyOptions from './options';
 class ReactFilestack extends Component {
   constructor(props) {
     super(props);
     this.onClickPick = this.onClickPick.bind(this);
+    this.checkDeprecatedProps = this.checkDeprecatedProps.bind(this);
+  }
+
+  checkDeprecatedProps() {
+    const { apiKey, buttonText, buttonClass } = this.props;
+    if (apiKey || buttonText || buttonClass) {
+      console.error('ReactFilestack: You are using deprecated props. One or some of [apiKey, buttonText, buttonClass]. Change these to [apikey, options.buttonText, options.buttonClass]');
+    }
   }
 
   componentDidMount() {
-    const { apiKey, buttonText, buttonClass, onFileUploaded, options } = this.props;
+    const { apikey, buttonText, buttonClass, onFileUploaded, options, mode } = this.props;
     const button = this.refs.fpButton;
-    if (!button) {
+    this.checkDeprecatedProps();
+    if (!button) { // if using default widget
       const element = this.refs.target;
-      element.type = 'filepicker';
-      element.setAttribute('data-fp-apikey', apiKey);
-      element.setAttribute('data-fp-button-text', buttonText || 'Pick File');
-      element.setAttribute('data-fp-button-class', buttonClass || 'fp__btn');
+      if (mode === 'crop') {
+        element.type = 'filepicker-convert';
+      } else if (mode === 'dragdrop') {
+        element.type = 'filepicker-dragdrop';
+      } else {
+        element.type = 'filepicker';
+      }
+      applyOptions(element, options, mode);
+      element.setAttribute('data-fp-apikey', apikey);
+      element.setAttribute('data-fp-button-text', buttonText || options.buttonText || 'Pick File');
+      element.setAttribute('data-fp-button-class', buttonClass || options.buttonClass || 'fp__btn');
       element.onchange = function (e) {
         if (typeof onFileUploaded === 'function') {
           onFileUploaded(e.fpfile);
@@ -27,29 +44,40 @@ class ReactFilestack extends Component {
   }
 
   onClickPick(e) {
-    const { apiKey, onFileUploaded, options } = this.props;
-    e.preventDefault();
-    e.stopPropagation();
-    filepicker.setKey(apiKey);
-    filepicker.pick(function (Blob) {
+    const { apikey, onFileUploaded, options } = this.props;
+    const callback = (Blob) => {
       if (typeof onFileUploaded === 'function') {
         onFileUploaded(Blob);
       } else {
         console.log(JSON.stringify(Blob));
       }
-    });
+    };
+    e.preventDefault();
+    e.stopPropagation();
+    filepicker.setKey(apikey);
+    if (options.multiple) {
+      filepicker.pickMultiple(options, callback);
+    } else {
+      filepicker.pick(options, callback);
+    }
   }
 
   render() {
-    const { defaultWidget, buttonClass, buttonText } = this.props;
+    const { defaultWidget, buttonClass, buttonText, options } = this.props;
     if (defaultWidget) {
       return (
         <input ref="target" />
       )
     } else {
       return (
-        <button name="filestack" ref="fpButton" onClick={this.onClickPick}
-                className={buttonClass}>{buttonText}</button>
+        <button
+          name="filestack"
+          ref="fpButton"
+          onClick={this.onClickPick}
+          className={buttonClass || options.buttonClass}
+        >
+          {buttonText || options.buttonText}
+        </button>
       )
     }
   }
@@ -57,8 +85,10 @@ class ReactFilestack extends Component {
 
 ReactFilestack.defaultProps = {
   defaultWidget: true,
-  buttonText: 'Pick File',
+  mode: 'pick',
   options: {
+    folders: false,
+    buttonText: 'Pick File',
     container: 'modal',
     language: 'en',
     webcam: {
@@ -75,11 +105,16 @@ ReactFilestack.defaultProps = {
 
 ReactFilestack.propTypes = {
   options: PropTypes.shape({
+    url: PropTypes.string,
+    buttonText: PropTypes.string,
+    buttonClass: PropTypes.string,
     mimetype: PropTypes.string,
     mimetypes: PropTypes.arrayOf(PropTypes.string),
     extension: PropTypes.string,
     extensions: PropTypes.arrayOf(PropTypes.string),
     maxSize: PropTypes.number,
+    maxFiles: PropTypes.number,
+    folders: PropTypes.bool,
     container: PropTypes.string,
     language: PropTypes.string,
     service: PropTypes.string,
@@ -111,10 +146,13 @@ ReactFilestack.propTypes = {
     cropMin: PropTypes.arrayOf(PropTypes.number),
     cropForce: PropTypes.bool,
   }),
-  apiKey: PropTypes.string.isRequired,
+  apikey: PropTypes.string.isRequired,
   defaultWidget: PropTypes.bool,
+  mode: PropTypes.string,
+  apiKey: PropTypes.string,
   buttonText: PropTypes.string,
   buttonClass: PropTypes.string,
+  onFilesUploaded: PropTypes.func,
   onFileUploaded: PropTypes.func,
 };
 
