@@ -21,8 +21,7 @@ module.exports = [{
   module: { loaders: loaders },
   externals: {
     react: 'react',
-    'react-dom': 'react-dom',
-    'filepicker-js': 'filepicker'
+    'react-dom': 'react-dom'
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),
