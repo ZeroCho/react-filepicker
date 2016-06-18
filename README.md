@@ -19,12 +19,12 @@ You should register for [Filestack(filepicker)](https://www.filestack.com) and g
 
 Default FileStack widget
 ```
-<ReactFilestack apikey={Your API Key} onFileUploaded={this.yourCallbackFunction}/>
+<ReactFilestack apikey={Your API Key} onSuccess={this.yourCallbackFunction}/>
 ```
 
 Custom Designed button
 ```
-<ReactFilestack apikey={Your API Key} defaultWidget={false} options={options} onFileUploaded={this.yourCallbackFunction} />
+<ReactFilestack apikey={Your API Key} defaultWidget={false} options={options} onSuccess={this.yourCallbackFunction} />
 ```
 
 make your own options and callback function, connect it and get results(fpfiles or blob object)
@@ -57,8 +57,8 @@ git clone this project and open index.html
 **optional** string. **default** 'pick'. **options** `['pick', 'dragdrop', 'convert', 'export']`. convert and export modes are for custom button.
 ### blob
 **optional** object. use if you need to insert blob object for convert or export
-### onFileUploaded
-**optional** function. get result(fpfiles or blob object) after upload is done. Will be changed to **onSuccess** for correspondence with filestack doc.
+### onSuccess
+**optional** function. get result(fpfiles or blob object) after upload is done.
 ### onError
 **optional** function. send error object as callback parameter
 ### onProgress
@@ -71,15 +71,15 @@ git clone this project and open index.html
 **optonal** string. When using custom button, you can set className. Also included in **options** prop, so use only when it's necessary.
 ### apiKey
 **deprecated**. Changed to **apikey** for correspondence with filestack doc.
-### onSuccess
-**optional** function. **Not available now.** 0.5.0
+### onFileUploaded
+**deprecated**. Changed to **onSuccess** for correspondence with filestack doc.
 
 ## Wanna Contribute?
 Please contribute to this package via **Pull Request**, or you can open **Issues**! 
 
 ## Future
 - server side rendering
-- add other methods than pick and pickAndMultiple
+- add other methods than pick, convert, export and pickAndMultiple
 
 ## License
 MIT
