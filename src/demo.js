@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     services: ['COMPUTER', 'FACEBOOK', 'CLOUDAPP']
   };
-  var cropOptions = {
-    buttonText: 'Crop It',
-    url: 'https://www.filestackapi.com/api/file/lQ9LalJTKmuou4WSw9LM',
+  var convertOptions = {
+    width: 200,
+    height: 200,
   };
   var customOptions = {
     buttonText: `I'm customized`,
@@ -29,6 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
     mimetype: 'image/*',
     container: 'window',
     services: ['COMPUTER', 'FACEBOOK', 'CLOUDAPP']
+  };
+  var blob = {
+    url: 'https://www.filestackapi.com/api/file/9BWnyKPBQI23ukbT7sZA',
+    filename: 'robot.png',
+    mimetype: 'image/png',
+    isWriteable: false,
+    size: 28683
+  };
+  var exportOptions = {
+    url: 'https://www.filestackapi.com/api/file/lQ9LalJTKmuou4WSw9LM',
+    mimetype: 'image/png',
+    buttonText: 'Export',
+    suggestedFilename: 'newFile',
   };
   var callback = function(fpfiles) {
     console.log('fpfiles', fpfiles);
@@ -41,20 +54,23 @@ document.addEventListener('DOMContentLoaded', () => {
       </form>
       <form>
         <div>Drag&Drop Widget with custom options and Callback</div>
-        <ReactFilestack apikey={apikey} mode="dragdrop" options={dragDropOptions} onFileUploaded={callback}/>
-      </form>
-      <form>
-        <div>Crop Widget with custom options Callback</div>
-        <ReactFilestack apikey={apikey} mode="crop" options={cropOptions} onFileUploaded={callback}/>
-        <div>Not working well. I need to inspect what happens.</div>
+        <ReactFilestack apikey={apikey} mode="dragdrop" options={dragDropOptions} onSuccess={callback}/>
       </form>
       <form>
         <div>Custom button(You can put className on the button to style)</div>
-        <ReactFilestack apikey={apikey} defaultWidget={false} onFileUploaded={callback} />
+        <ReactFilestack apikey={apikey} defaultWidget={false} onSuccess={callback} />
       </form>
       <form>
         <div>Custom button with custom options and custom styles</div>
-        <ReactFilestack apikey={apikey} defaultWidget={false} options={customOptions} onFileUploaded={callback} />
+        <ReactFilestack apikey={apikey} defaultWidget={false} options={customOptions} onSuccess={callback} />
+      </form>
+      <form>
+        <div>Export button</div>
+        <ReactFilestack apikey={apikey} mode="export" defaultWidget={false} options={exportOptions} onSuccess={callback} />
+      </form>
+      <form>
+        <div>Convert button</div>
+        <ReactFilestack apikey={apikey} mode="convert" defaultWidget={false} blob={blob} options={convertOptions} onSuccess={callback} buttonText="Convert!"/>
       </form>
     </div>,
     rootNode

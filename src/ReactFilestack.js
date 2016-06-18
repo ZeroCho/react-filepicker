@@ -8,21 +8,19 @@ class ReactFilestack extends Component {
   }
 
   checkDeprecatedProps() {
-    const { apiKey, buttonText, buttonClass } = this.props;
-    if (apiKey || buttonText || buttonClass) {
-      console.error('ReactFilestack: You are using deprecated props. One or some of [apiKey, buttonText, buttonClass]. Change these to [apikey, options.buttonText, options.buttonClass]');
+    const { apiKey, onFileUploaded } = this.props;
+    if (apiKey || onFileUploaded) {
+      console.error('ReactFilestack: You are using deprecated props. One or some of [apiKey, onFileUploaded]. Change these to [apikey, onSuccess]');
     }
   }
 
   componentDidMount() {
-    const { apikey, buttonText, buttonClass, onFileUploaded, options, mode } = this.props;
+    const { apikey, buttonText, buttonClass, onSuccess, options, mode } = this.props;
     const button = this.refs.fpButton;
     this.checkDeprecatedProps();
     if (!button) { // if using default widget
       const element = this.refs.target;
-      if (mode === 'crop') {
-        element.type = 'filepicker-convert';
-      } else if (mode === 'dragdrop') {
+      if (mode === 'dragdrop') {
         element.type = 'filepicker-dragdrop';
       } else {
         element.type = 'filepicker';
@@ -32,10 +30,10 @@ class ReactFilestack extends Component {
       element.setAttribute('data-fp-button-text', buttonText || options.buttonText || 'Pick File');
       element.setAttribute('data-fp-button-class', buttonClass || options.buttonClass || 'fp__btn');
       element.onchange = function (e) {
-        if (typeof onFileUploaded === 'function') {
-          onFileUploaded(e.fpfile);
+        if (typeof onSuccess === 'function') {
+          onSuccess(e.fpfile);
         } else {
-          console.log(JSON.stringify(e.fpfile));
+          console.log(e.fpfile);
         }
       };
       filepicker.constructWidget(element);
@@ -44,21 +42,39 @@ class ReactFilestack extends Component {
   }
 
   onClickPick(e) {
-    const { apikey, onFileUploaded, options } = this.props;
-    const callback = (Blob) => {
-      if (typeof onFileUploaded === 'function') {
-        onFileUploaded(Blob);
+    const { apikey, onSuccess, onError, onProgress, options, mode, blob } = this.props;
+    const onFinished = (blob) => {
+      if (typeof onSuccess === 'function') {
+        onSuccess(blob);
       } else {
-        console.log(JSON.stringify(Blob));
+        console.log(blob);
+      }
+    };
+    const onFail = (error) => {
+      if (typeof onError === 'function') {
+        onError(error);
+      } else {
+        console.error(error);
+      }
+    };
+    const onUploading = (progress) => {
+      if (typeof onProgress === 'function') {
+        onProgress(progress);
+      } else {
+        console.log(progress);
       }
     };
     e.preventDefault();
     e.stopPropagation();
     filepicker.setKey(apikey);
-    if (options.multiple) {
-      filepicker.pickMultiple(options, callback);
+    if (mode === 'export') {
+      filepicker.exportFile(blob || options.url, options, onFinished, onFail, onUploading);
+    } else if (mode === 'convert') {
+      filepicker.convert(blob, options, options, onFinished, onFail, onUploading);
+    } else if (options.multiple) {
+      filepicker.pickMultiple(options, onFinished, onFail, onUploading);
     } else {
-      filepicker.pick(options, callback);
+      filepicker.pick(options, onFinished, onFail, onUploading);
     }
   }
 
@@ -104,8 +120,10 @@ ReactFilestack.defaultProps = {
 };
 
 ReactFilestack.propTypes = {
+  blob: PropTypes.object,
   options: PropTypes.shape({
     url: PropTypes.string,
+    suggestedFilename: PropTypes.string,
     buttonText: PropTypes.string,
     buttonClass: PropTypes.string,
     mimetype: PropTypes.string,
@@ -145,15 +163,35 @@ ReactFilestack.propTypes = {
     cropMax: PropTypes.arrayOf(PropTypes.number),
     cropMin: PropTypes.arrayOf(PropTypes.number),
     cropForce: PropTypes.bool,
+    width: PropTypes.number,
+    height: PropTypes.number,
+    fit: PropTypes.oneOf(['clip', 'crop', 'scale', 'max']),
+    align: PropTypes.oneOf(['top', 'bottom', 'left', 'right', 'faces']),
+    crop: PropTypes.arrayOf(PropTypes.number),
+    crop_first: PropTypes.bool,
+    format: PropTypes.string,
+    filter: PropTypes.oneOf(['blur', 'sharpen']),
+    compress: PropTypes.bool,
+    quality: PropTypes.number,
+    rotate: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    watermark: PropTypes.string,
+    watermark_position: PropTypes.string,
+    watermark_size: PropTypes.number,
+    location: PropTypes.string,
+    path: PropTypes.string,
+    storeRegion: PropTypes.string,
+    access: PropTypes.string,
   }),
   apikey: PropTypes.string.isRequired,
   defaultWidget: PropTypes.bool,
   mode: PropTypes.string,
-  apiKey: PropTypes.string,
   buttonText: PropTypes.string,
   buttonClass: PropTypes.string,
-  onFilesUploaded: PropTypes.func,
+  onSuccess: PropTypes.func,
+  onError: PropTypes.func,
+  onProgress: PropTypes.func,
   onFileUploaded: PropTypes.func,
+  apiKey: PropTypes.string,
 };
 
 export default ReactFilestack;

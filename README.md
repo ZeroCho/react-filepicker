@@ -41,34 +41,38 @@ yourCallbackFunction(fpfiles) {
 }
 ```
 ## Result
-![filestack](https://cloud.githubusercontent.com/assets/10962668/16159308/033281ac-34fd-11e6-9b07-aab69893997a.png)
+![filestack](https://cloud.githubusercontent.com/assets/10962668/16173096/634160de-35d1-11e6-9b6a-1803b53c30d6.png)
 ## Demo
 git clone this project and open index.html
 [Link](https://github.com/zerocho/react-filestack/blob/master/index.html)
 
 ## Props
 [Official Filestack Documentation](https://filestack.com/docs)
-### mode
-**optional** string. **default** 'pick'. **options** `['pick', 'dragdrop', 'convert']`
+
 ### apikey
 **required** string. An API key for filestack
 ### defaultWidget
 **optional** boolean. **default** true. choose between the default widget and the custom button
+### mode
+**optional** string. **default** 'pick'. **options** `['pick', 'dragdrop', 'convert', 'export']`. convert and export modes are for custom button.
+### blob
+**optional** object. use if you need to insert blob object for convert or export
 ### onFileUploaded
-**optional** function. get result(fpfiles or blob object) after upload is done. Will be changed to **onFilesUploaded** for correspondence with filestack doc.
+**optional** function. get result(fpfiles or blob object) after upload is done. Will be changed to **onSuccess** for correspondence with filestack doc.
+### onError
+**optional** function. send error object as callback parameter
+### onProgress
+**optional** function. send progress object as callback parameter
 ### options
-**optional** object. Detailed options for button. See official documentation.
-------------------------------------------------------------------------------------------------------
+**optional** object. **Detailed options for button. See Javascript API of official documentation. Put everything in it if you think you have to**
+### buttonText
+**optional** string. When using custom button, you can set your own text. Also included in **options** prop, so use only when it's necessary.
+### buttonClass
+**optonal** string. When using custom button, you can set className. Also included in **options** prop, so use only when it's necessary.
 ### apiKey
 **deprecated**. Changed to **apikey** for correspondence with filestack doc.
-### buttonText
-**deprecated**. When using custom button, you can set your own text. Will be included in **options** prop and deprecated.
-### buttonClass
-**deprecated**. When using custom button, you can set className. Will be included in **options** prop and deprecated.
-### onFilesUploaded
-**optional** function. **Not available now.** 0.4.0
-### onError
-**optional** function. **Not available now** 0.4.0
+### onSuccess
+**optional** function. **Not available now.** 0.5.0
 
 ## Wanna Contribute?
 Please contribute to this package via **Pull Request**, or you can open **Issues**! 
