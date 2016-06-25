@@ -4,20 +4,11 @@ class ReactFilepicker extends Component {
   constructor(props) {
     super(props);
     this.onClickPick = this.onClickPick.bind(this);
-    this.checkDeprecatedProps = this.checkDeprecatedProps.bind(this);
-  }
-
-  checkDeprecatedProps() {
-    const { apiKey, onFileUploaded } = this.props;
-    if (apiKey || onFileUploaded) {
-      console.error('ReactFilepicker: You are using deprecated props. One or some of [apiKey, onFileUploaded]. Change these to [apikey, onSuccess]');
-    }
   }
 
   componentDidMount() {
     const { apikey, buttonText, buttonClass, onSuccess, options, mode } = this.props;
     const button = this.refs.fpButton;
-    this.checkDeprecatedProps();
     if (!button) { // if using default widget
       const element = this.refs.target;
       if (mode === 'dragdrop') {
@@ -190,8 +181,6 @@ ReactFilepicker.propTypes = {
   onSuccess: PropTypes.func,
   onError: PropTypes.func,
   onProgress: PropTypes.func,
-  onFileUploaded: PropTypes.func,
-  apiKey: PropTypes.string,
 };
 
 export default ReactFilepicker;

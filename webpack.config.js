@@ -15,7 +15,7 @@ module.exports = [{
   entry: './src/ReactFilepicker.js',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'react-filestack.js',
+    filename: 'react-filepicker.js',
     libraryTarget: 'commonjs2'
   },
   module: { loaders: loaders },

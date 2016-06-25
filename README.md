@@ -84,12 +84,6 @@ git clone this project and open index.html
 > ### buttonClass
 > **optional** string. When using custom button, you can set className. Also included in **options** prop, so use only when it's necessary.
 
->### _apiKey_
->**deprecated**. Changed to **apikey** for correspondence with filestack doc.
-
->### _onFileUploaded_
->**deprecated**. Changed to **onSuccess** for correspondence with filestack doc.
-
 ## Wanna Contribute?
 Please contribute to this package via **Pull Request**, or you can open **Issues**! 
 
