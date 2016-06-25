@@ -1,42 +1,42 @@
-# React Filestack
-react component for **filestack**(previously **filepicker**) button
+# React Filepicker
+react component for **filepicker**(a.k.a **filestack**) button
 
 ## How to install
 [NPM link](https://npmjs.com/package/react-filestack)
 ```
-npm install react-filestack
+npm install react-filepicker
 ```
 ## Import
 ```
-var ReactFilestack = require('react-filestack');
+var ReactFilepicker = require('react-filepicker');
 ```
 In ES2015
 ```
-import ReactFilestack from 'react-filestack';
+import ReactFilepicker from 'react-filepicker';
 ```
 ## Usage
 You should register for [Filestack(filepicker)](https://www.filestack.com) and get an **API key** first!
 
 **Default FileStack widget**
 ```
-<ReactFilestack apikey={Your API Key} onSuccess={this.yourCallbackFunction}/>
+<ReactFilepicker apikey={Your API Key} onSuccess={this.yourCallbackFunction}/>
 ```
 
 **Custom Designed button**
 ```
-<ReactFilestack apikey={Your API Key} defaultWidget={false} options={options} onSuccess={this.yourCallbackFunction} />
+<ReactFilepicker apikey={Your API Key} defaultWidget={false} options={options} onSuccess={this.yourCallbackFunction} />
 ```
 
 **Other mode than 'pick'**
 ```
-<ReactFilestack apikey={Your API Key} mode="export" defaultWidget={false} options={options} onSuccess={this.yourCallbackFunction} />
+<ReactFilepicker apikey={Your API Key} mode="export" defaultWidget={false} options={options} onSuccess={this.yourCallbackFunction} />
 ```
 
 make your own options and callback function, connect it and get results(fpfiles or blob object)
 ```
 const options = {
   buttonText: 'Pick Me',
-  buttonClass: 'filestack',
+  buttonClass: 'filepicker',
   mimetype: 'image/*',
   container: 'window',
   services: ['COMPUTER', 'FACEBOOK', 'CLOUDAPP']

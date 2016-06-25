@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import applyOptions from './options';
-class ReactFilestack extends Component {
+class ReactFilepicker extends Component {
   constructor(props) {
     super(props);
     this.onClickPick = this.onClickPick.bind(this);
@@ -10,7 +10,7 @@ class ReactFilestack extends Component {
   checkDeprecatedProps() {
     const { apiKey, onFileUploaded } = this.props;
     if (apiKey || onFileUploaded) {
-      console.error('ReactFilestack: You are using deprecated props. One or some of [apiKey, onFileUploaded]. Change these to [apikey, onSuccess]');
+      console.error('ReactFilepicker: You are using deprecated props. One or some of [apiKey, onFileUploaded]. Change these to [apikey, onSuccess]');
     }
   }
 
@@ -87,7 +87,7 @@ class ReactFilestack extends Component {
     } else {
       return (
         <button
-          name="filestack"
+          name="filepicker"
           ref="fpButton"
           onClick={this.onClickPick}
           className={buttonClass || options.buttonClass}
@@ -99,7 +99,7 @@ class ReactFilestack extends Component {
   }
 }
 
-ReactFilestack.defaultProps = {
+ReactFilepicker.defaultProps = {
   defaultWidget: true,
   mode: 'pick',
   options: {
@@ -119,7 +119,7 @@ ReactFilestack.defaultProps = {
   }
 };
 
-ReactFilestack.propTypes = {
+ReactFilepicker.propTypes = {
   blob: PropTypes.object,
   options: PropTypes.shape({
     url: PropTypes.string,
@@ -194,4 +194,4 @@ ReactFilestack.propTypes = {
   apiKey: PropTypes.string,
 };
 
-export default ReactFilestack;
+export default ReactFilepicker;

@@ -12,7 +12,7 @@ var loaders = [
 ];
 
 module.exports = [{
-  entry: './src/ReactFilestack.js',
+  entry: './src/ReactFilepicker.js',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'react-filestack.js',
@@ -58,7 +58,7 @@ module.exports = [{
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
+        NODE_ENV: JSON.stringify('production')
       }
     }),
     new webpack.ProvidePlugin({

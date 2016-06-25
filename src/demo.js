@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactFilestack from './ReactFilestack';
+import ReactFilepicker from './ReactFilepicker';
 import styles from './demo.css';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -50,27 +50,27 @@ document.addEventListener('DOMContentLoaded', () => {
     <div>
       <form>
         <div>DefaultWidget</div>
-        <ReactFilestack apikey={apikey} />
+        <ReactFilepicker apikey={apikey} />
       </form>
       <form>
         <div>Drag&Drop Widget with custom options and Callback</div>
-        <ReactFilestack apikey={apikey} mode="dragdrop" options={dragDropOptions} onSuccess={callback}/>
+        <ReactFilepicker apikey={apikey} mode="dragdrop" options={dragDropOptions} onSuccess={callback}/>
       </form>
       <form>
         <div>Custom button(You can put className on the button to style)</div>
-        <ReactFilestack apikey={apikey} defaultWidget={false} onSuccess={callback} />
+        <ReactFilepicker apikey={apikey} defaultWidget={false} onSuccess={callback} />
       </form>
       <form>
         <div>Custom button with custom options and custom styles</div>
-        <ReactFilestack apikey={apikey} defaultWidget={false} options={customOptions} onSuccess={callback} />
+        <ReactFilepicker apikey={apikey} defaultWidget={false} options={customOptions} onSuccess={callback} />
       </form>
       <form>
         <div>Export button</div>
-        <ReactFilestack apikey={apikey} mode="export" defaultWidget={false} options={exportOptions} onSuccess={callback} />
+        <ReactFilepicker apikey={apikey} mode="export" defaultWidget={false} options={exportOptions} onSuccess={callback} />
       </form>
       <form>
         <div>Convert button</div>
-        <ReactFilestack apikey={apikey} mode="convert" defaultWidget={false} blob={blob} options={convertOptions} onSuccess={callback} buttonText="Convert!"/>
+        <ReactFilepicker apikey={apikey} mode="convert" defaultWidget={false} blob={blob} options={convertOptions} onSuccess={callback} buttonText="Convert!"/>
       </form>
     </div>,
     rootNode

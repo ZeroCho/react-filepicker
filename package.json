@@ -1,8 +1,8 @@
 {
-  "name": "react-filestack",
-  "version": "0.4.1",
-  "main": "dist/react-filestack.js",
-  "description": "react component for filestack(previously filepicker)",
+  "name": "react-filepicker",
+  "version": "0.5.0",
+  "main": "dist/react-filepicker.js",
+  "description": "react component for filepicker(a.k.a filestack)",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && webpack --progess --colors --debug --ouput-pathinfo --display-error-details",
