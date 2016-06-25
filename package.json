@@ -1,6 +1,6 @@
 {
   "name": "react-filepicker",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "main": "dist/react-filepicker.js",
   "description": "react component for filepicker(a.k.a filestack)",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zerocho/react-filestack.git"
+    "url": "git+https://github.com/zerocho/react-filepicker.git"
   },
   "keywords": [
     "react-filepicker",
@@ -28,9 +28,9 @@
   "author": "ZeroCho",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zerocho/react-filestack/issues"
+    "url": "https://github.com/zerocho/react-filepicker/issues"
   },
-  "homepage": "https://github.com/zerocho/react-filestack#readme",
+  "homepage": "https://github.com/zerocho/react-filepicker#readme",
   "dependencies": {
     "filepicker-js": "^2.4.11"
   },
