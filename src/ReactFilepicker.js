@@ -12,9 +12,7 @@ class ReactFilepicker extends Component {
     if (!button) { // if using default widget
       const element = this.refs.target;
       if (mode === 'dragdrop') {
-        element.type = 'filepicker-dragdrop';
-      } else {
-        element.type = 'filepicker';
+        element.setAttribute('type', 'filepicker-dragdrop');
       }
       applyOptions(element, options, mode);
       element.setAttribute('data-fp-apikey', apikey);
@@ -33,6 +31,8 @@ class ReactFilepicker extends Component {
   }
 
   onClickPick(e) {
+    e.preventDefault();
+    e.stopPropagation();
     const { apikey, onSuccess, onError, onProgress, options, mode, blob } = this.props;
     const onFinished = (blob) => {
       if (typeof onSuccess === 'function') {
@@ -55,8 +55,6 @@ class ReactFilepicker extends Component {
         console.log(progress);
       }
     };
-    e.preventDefault();
-    e.stopPropagation();
     filepicker.setKey(apikey);
     if (mode === 'export') {
       filepicker.exportFile(blob || options.url, options, onFinished, onFail, onUploading);
@@ -73,7 +71,7 @@ class ReactFilepicker extends Component {
     const { defaultWidget, buttonClass, buttonText, options } = this.props;
     if (defaultWidget) {
       return (
-        <input ref="target" />
+        <input ref="target" type="filepicker"/>
       )
     } else {
       return (

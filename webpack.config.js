@@ -18,6 +18,7 @@ module.exports = [{
     filename: 'react-filepicker.js',
     libraryTarget: 'commonjs2'
   },
+  devtool: 'source-map',
   module: { loaders: loaders },
   externals: {
     react: 'react',
@@ -47,6 +48,7 @@ module.exports = [{
     path: path.join(__dirname, 'dist'),
     filename: 'demo.js'
   },
+  devtool: 'source-map',
   module: { loaders: loaders },
   plugins: [
     new webpack.optimize.DedupePlugin(),
