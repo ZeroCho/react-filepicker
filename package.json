@@ -1,6 +1,6 @@
 {
   "name": "react-filepicker",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "main": "dist/react-filepicker.js",
   "description": "react component for filepicker(a.k.a filestack)",
   "scripts": {
@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/zerocho/react-filepicker#readme",
   "dependencies": {
-    "filepicker-js": "^2.4.12"
+    "filepicker-js": "^2.4.14"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
