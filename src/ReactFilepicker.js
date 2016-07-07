@@ -1,94 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import applyOptions from './options';
 class ReactFilepicker extends Component {
-  constructor(props) {
-    super(props);
-    this.onClickPick = this.onClickPick.bind(this);
-  }
-
-  componentDidMount() {
-    const { apikey, buttonText, buttonClass, onSuccess, options, mode } = this.props;
-    const button = this.refs.fpButton;
-    if (!button) { // if using default widget
-      const element = this.refs.target;
-      if (mode === 'dragdrop') {
-        element.setAttribute('type', 'filepicker-dragdrop');
-      }
-      applyOptions(element, options, mode);
-      element.setAttribute('data-fp-apikey', apikey);
-      element.setAttribute('data-fp-button-text', buttonText || options.buttonText || 'Pick File');
-      element.setAttribute('data-fp-button-class', buttonClass || options.buttonClass || 'fp__btn');
-      element.onchange = function (e) {
-        if (typeof onSuccess === 'function') {
-          onSuccess(e.fpfile);
-        } else {
-          console.log(e.fpfile);
-        }
-      };
-      filepicker.constructWidget(element);
-      element.type = '';
-    }
-  }
-
-  onClickPick(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    const { apikey, onSuccess, onError, onProgress, options, mode, blob } = this.props;
-    const onFinished = (blob) => {
-      if (typeof onSuccess === 'function') {
-        onSuccess(blob);
-      } else {
-        console.log(blob);
-      }
-    };
-    const onFail = (error) => {
-      if (typeof onError === 'function') {
-        onError(error);
-      } else {
-        console.error(error);
-      }
-    };
-    const onUploading = (progress) => {
-      if (typeof onProgress === 'function') {
-        onProgress(progress);
-      } else {
-        console.log(progress);
-      }
-    };
-    filepicker.setKey(apikey);
-    if (mode === 'export') {
-      filepicker.exportFile(blob || options.url, options, onFinished, onFail, onUploading);
-    } else if (mode === 'convert') {
-      filepicker.convert(blob, options, options, onFinished, onFail, onUploading);
-    } else if (options.multiple) {
-      filepicker.pickMultiple(options, onFinished, onFail, onUploading);
-    } else {
-      filepicker.pick(options, onFinished, onFail, onUploading);
-    }
-  }
-
-  render() {
-    const { defaultWidget, buttonClass, buttonText, options } = this.props;
-    if (defaultWidget) {
-      return (
-        <input ref="target" type="filepicker"/>
-      )
-    } else {
-      return (
-        <button
-          name="filepicker"
-          ref="fpButton"
-          onClick={this.onClickPick}
-          className={buttonClass || options.buttonClass}
-        >
-          {buttonText || options.buttonText}
-        </button>
-      )
-    }
-  }
-}
-
-ReactFilepicker.defaultProps = {
+  static defaultProps = {
   defaultWidget: true,
   mode: 'pick',
   options: {
@@ -108,7 +21,7 @@ ReactFilepicker.defaultProps = {
   }
 };
 
-ReactFilepicker.propTypes = {
+  static propTypes = {
   blob: PropTypes.object,
   options: PropTypes.shape({
     url: PropTypes.string,
@@ -180,5 +93,87 @@ ReactFilepicker.propTypes = {
   onError: PropTypes.func,
   onProgress: PropTypes.func,
 };
+  componentDidMount() {
+    const { apikey, buttonText, buttonClass, onSuccess, options, mode } = this.props;
+    const button = this.refs.fpButton;
+    if (!button) { // if using default widget
+      const element = this.refs.target;
+      if (mode === 'dragdrop') {
+        element.setAttribute('type', 'filepicker-dragdrop');
+      }
+      applyOptions(element, options, mode);
+      element.setAttribute('data-fp-apikey', apikey);
+      element.setAttribute('data-fp-button-text', buttonText || options.buttonText || 'Pick File');
+      element.setAttribute('data-fp-button-class', buttonClass || options.buttonClass || 'fp__btn');
+      element.onchange = function (e) {
+        if (typeof onSuccess === 'function') {
+          onSuccess(e.fpfile);
+        } else {
+          console.log(e.fpfile);
+        }
+      };
+      filepicker.constructWidget(element);
+      element.type = '';
+    }
+  }
+
+  onClickPick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const { apikey, onSuccess, onError, onProgress, options, mode, blob } = this.props;
+    const onFinished = (blob) => {
+      if (typeof onSuccess === 'function') {
+        onSuccess(blob);
+      } else {
+        console.log(blob);
+      }
+    };
+    const onFail = (error) => {
+      if (typeof onError === 'function') {
+        onError(error);
+      } else {
+        console.error(error);
+      }
+    };
+    const onUploading = (progress) => {
+      if (typeof onProgress === 'function') {
+        onProgress(progress);
+      } else {
+        console.log(progress);
+      }
+    };
+    filepicker.setKey(apikey);
+    if (mode === 'export') {
+      filepicker.exportFile(blob || options.url, options, onFinished, onFail, onUploading);
+    } else if (mode === 'convert') {
+      filepicker.convert(blob, options, options, onFinished, onFail, onUploading);
+    } else if (options.multiple) {
+      filepicker.pickMultiple(options, onFinished, onFail, onUploading);
+    } else {
+      filepicker.pick(options, onFinished, onFail, onUploading);
+    }
+  };
+
+  render() {
+    const { defaultWidget, buttonClass, buttonText, options, ...otherProps } = this.props;
+    if (defaultWidget) {
+      return (
+        <input ref="target" type="filepicker" {...otherProps} />
+      )
+    } else {
+      return (
+        <button
+          name="filepicker"
+          ref="fpButton"
+          onClick={this.onClickPick}
+          className={buttonClass || options.buttonClass}
+          {...otherProps}
+        >
+          {buttonText || options.buttonText}
+        </button>
+      )
+    }
+  }
+}
 
 export default ReactFilepicker;
