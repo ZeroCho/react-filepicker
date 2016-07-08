@@ -2,97 +2,98 @@ import React, { Component, PropTypes } from 'react';
 import applyOptions from './options';
 class ReactFilepicker extends Component {
   static defaultProps = {
-  defaultWidget: true,
-  mode: 'pick',
-  options: {
-    folders: false,
-    buttonText: 'Pick File',
-    container: 'modal',
-    language: 'en',
-    webcam: {
-      videoRes: '640x480',
-      audioLen: '3600',
-      vidioLen: '3600'
-    },
-    backgroundUpload: true,
-    hide: false,
-    imageQuality: 100,
-    cropForce: false,
-  }
-};
+    defaultWidget: true,
+    mode: 'pick',
+    options: {
+      folders: false,
+      buttonText: 'Pick File',
+      container: 'modal',
+      language: 'en',
+      webcam: {
+        videoRes: '640x480',
+        audioLen: '3600',
+        vidioLen: '3600'
+      },
+      backgroundUpload: true,
+      hide: false,
+      imageQuality: 100,
+      cropForce: false,
+    }
+  };
 
   static propTypes = {
-  blob: PropTypes.object,
-  options: PropTypes.shape({
-    url: PropTypes.string,
-    suggestedFilename: PropTypes.string,
+    blob: PropTypes.object,
+    options: PropTypes.shape({
+      url: PropTypes.string,
+      suggestedFilename: PropTypes.string,
+      buttonText: PropTypes.string,
+      buttonClass: PropTypes.string,
+      mimetype: PropTypes.string,
+      mimetypes: PropTypes.arrayOf(PropTypes.string),
+      extension: PropTypes.string,
+      extensions: PropTypes.arrayOf(PropTypes.string),
+      maxSize: PropTypes.number,
+      maxFiles: PropTypes.number,
+      folders: PropTypes.bool,
+      container: PropTypes.string,
+      language: PropTypes.string,
+      service: PropTypes.string,
+      services: PropTypes.arrayOf(PropTypes.string),
+      openTo: PropTypes.string,
+      webcamDim: PropTypes.arrayOf(PropTypes.number),
+      webcam: PropTypes.shape({
+        videoRes: PropTypes.string,
+        audioLen: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        videoLen: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      }),
+      customSourceContainer: PropTypes.string,
+      customSourcePath: PropTypes.string,
+      debug: PropTypes.bool,
+      policy: PropTypes.string,
+      signature: PropTypes.string,
+      backgroundUpload: PropTypes.bool,
+      hide: PropTypes.bool,
+      customCss: PropTypes.string,
+      customText: PropTypes.string,
+      imageQuality: PropTypes.number,
+      imageDim: PropTypes.arrayOf(PropTypes.number),
+      imageMax: PropTypes.arrayOf(PropTypes.number),
+      imageMin: PropTypes.arrayOf(PropTypes.number),
+      conversions: PropTypes.arrayOf(PropTypes.string),
+      cropRatio: PropTypes.number,
+      cropDim: PropTypes.arrayOf(PropTypes.number),
+      cropMax: PropTypes.arrayOf(PropTypes.number),
+      cropMin: PropTypes.arrayOf(PropTypes.number),
+      cropForce: PropTypes.bool,
+      width: PropTypes.number,
+      height: PropTypes.number,
+      fit: PropTypes.oneOf(['clip', 'crop', 'scale', 'max']),
+      align: PropTypes.oneOf(['top', 'bottom', 'left', 'right', 'faces']),
+      crop: PropTypes.arrayOf(PropTypes.number),
+      crop_first: PropTypes.bool,
+      format: PropTypes.string,
+      filter: PropTypes.oneOf(['blur', 'sharpen']),
+      compress: PropTypes.bool,
+      quality: PropTypes.number,
+      rotate: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      watermark: PropTypes.string,
+      watermark_position: PropTypes.string,
+      watermark_size: PropTypes.number,
+      location: PropTypes.string,
+      path: PropTypes.string,
+      storeRegion: PropTypes.string,
+      access: PropTypes.string,
+    }),
+    apikey: PropTypes.string.isRequired,
+    defaultWidget: PropTypes.bool,
+    mode: PropTypes.string,
     buttonText: PropTypes.string,
     buttonClass: PropTypes.string,
-    mimetype: PropTypes.string,
-    mimetypes: PropTypes.arrayOf(PropTypes.string),
-    extension: PropTypes.string,
-    extensions: PropTypes.arrayOf(PropTypes.string),
-    maxSize: PropTypes.number,
-    maxFiles: PropTypes.number,
-    folders: PropTypes.bool,
-    container: PropTypes.string,
-    language: PropTypes.string,
-    service: PropTypes.string,
-    services: PropTypes.arrayOf(PropTypes.string),
-    openTo: PropTypes.string,
-    webcamDim: PropTypes.arrayOf(PropTypes.number),
-    webcam: PropTypes.shape({
-      videoRes: PropTypes.string,
-      audioLen: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      videoLen: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    }),
-    customSourceContainer: PropTypes.string,
-    customSourcePath: PropTypes.string,
-    debug: PropTypes.bool,
-    policy: PropTypes.string,
-    signature: PropTypes.string,
-    backgroundUpload: PropTypes.bool,
-    hide: PropTypes.bool,
-    customCss: PropTypes.string,
-    customText: PropTypes.string,
-    imageQuality: PropTypes.number,
-    imageDim: PropTypes.arrayOf(PropTypes.number),
-    imageMax: PropTypes.arrayOf(PropTypes.number),
-    imageMin: PropTypes.arrayOf(PropTypes.number),
-    conversions: PropTypes.arrayOf(PropTypes.string),
-    cropRatio: PropTypes.number,
-    cropDim: PropTypes.arrayOf(PropTypes.number),
-    cropMax: PropTypes.arrayOf(PropTypes.number),
-    cropMin: PropTypes.arrayOf(PropTypes.number),
-    cropForce: PropTypes.bool,
-    width: PropTypes.number,
-    height: PropTypes.number,
-    fit: PropTypes.oneOf(['clip', 'crop', 'scale', 'max']),
-    align: PropTypes.oneOf(['top', 'bottom', 'left', 'right', 'faces']),
-    crop: PropTypes.arrayOf(PropTypes.number),
-    crop_first: PropTypes.bool,
-    format: PropTypes.string,
-    filter: PropTypes.oneOf(['blur', 'sharpen']),
-    compress: PropTypes.bool,
-    quality: PropTypes.number,
-    rotate: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    watermark: PropTypes.string,
-    watermark_position: PropTypes.string,
-    watermark_size: PropTypes.number,
-    location: PropTypes.string,
-    path: PropTypes.string,
-    storeRegion: PropTypes.string,
-    access: PropTypes.string,
-  }),
-  apikey: PropTypes.string.isRequired,
-  defaultWidget: PropTypes.bool,
-  mode: PropTypes.string,
-  buttonText: PropTypes.string,
-  buttonClass: PropTypes.string,
-  onSuccess: PropTypes.func,
-  onError: PropTypes.func,
-  onProgress: PropTypes.func,
-};
+    onSuccess: PropTypes.func,
+    onError: PropTypes.func,
+    onProgress: PropTypes.func,
+  };
+
   componentDidMount() {
     const { apikey, buttonText, buttonClass, onSuccess, options, mode } = this.props;
     const button = this.refs.fpButton;
@@ -112,8 +113,10 @@ class ReactFilepicker extends Component {
           console.log(e.fpfile);
         }
       };
-      filepicker.constructWidget(element);
-      element.type = '';
+      if (typeof window !== 'undefined') {
+        filepicker.constructWidget(element);
+        element.type = '';
+      }
     }
   }
 
@@ -142,15 +145,17 @@ class ReactFilepicker extends Component {
         console.log(progress);
       }
     };
-    filepicker.setKey(apikey);
-    if (mode === 'export') {
-      filepicker.exportFile(blob || options.url, options, onFinished, onFail, onUploading);
-    } else if (mode === 'convert') {
-      filepicker.convert(blob, options, options, onFinished, onFail, onUploading);
-    } else if (options.multiple) {
-      filepicker.pickMultiple(options, onFinished, onFail, onUploading);
-    } else {
-      filepicker.pick(options, onFinished, onFail, onUploading);
+    if (typeof window !== 'undefined') {
+      filepicker.setKey(apikey);
+      if (mode === 'export') {
+        filepicker.exportFile(blob || options.url, options, onFinished, onFail, onUploading);
+      } else if (mode === 'convert') {
+        filepicker.convert(blob, options, options, onFinished, onFail, onUploading);
+      } else if (options.multiple) {
+        filepicker.pickMultiple(options, onFinished, onFail, onUploading);
+      } else {
+        filepicker.pick(options, onFinished, onFail, onUploading);
+      }
     }
   };
 
