@@ -28,6 +28,7 @@ module.exports = [{
     }),
     new webpack.ProvidePlugin({
       filepicker: 'filepicker-js',
+      'window.filepicker': 'filepicker-js'
     })
   ]
 }, {
