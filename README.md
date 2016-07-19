@@ -49,6 +49,12 @@ yourCallbackFunction(fpfiles) {
   // handle fpfiles or blob object
 }
 ```
+
+**Link instead of button**
+```
+<ReactFilepicker apikey={Your API Key} defaultWidget={false} link options={options} onSuccess={this.yourCallbackFunction} />
+```
+
 ## Result
 ![filestack](https://cloud.githubusercontent.com/assets/10962668/16173096/634160de-35d1-11e6-9b6a-1803b53c30d6.png)
 ## Demo

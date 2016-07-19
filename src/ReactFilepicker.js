@@ -25,6 +25,7 @@ class ReactFilepicker extends Component {
     blob: PropTypes.object,
     apikey: PropTypes.string.isRequired,
     defaultWidget: PropTypes.bool,
+    link: PropTypes.bool,
     mode: PropTypes.string,
     buttonText: PropTypes.string,
     buttonClass: PropTypes.string,
@@ -164,21 +165,23 @@ class ReactFilepicker extends Component {
   };
 
   render() {
-    const { defaultWidget, buttonClass, buttonText, options } = this.props;
+    const { defaultWidget, buttonClass, buttonText, link, options } = this.props;
     if (defaultWidget) {
       return (
         <input ref="target" type="filepicker" />
       )
     }
+    const Tag = link ? 'a' : 'button'
     return (
-      <button
+      <Tag
         name="filepicker"
         ref="fpButton"
         onClick={this.onClickPick}
         className={buttonClass || options.buttonClass}
+        href={link ? 'javascript:void(0)' : undefined}
       >
         {buttonText || options.buttonText}
-      </button>
+      </Tag>
     )
   }
 }
