@@ -151,6 +151,8 @@ class ReactFilepicker extends Component {
         filepicker.exportFile(blob || options.url, options, onFinished, onFail, onUploading);
       } else if (mode === 'convert') {
         filepicker.convert(blob, options, options, onFinished, onFail, onUploading);
+      } else if (mode === 'pickAndStore') {
+        filepicker.pickAndStore(options, options, onFinished, onFail, onUploading);
       } else if (options.multiple) {
         filepicker.pickMultiple(options, onFinished, onFail, onUploading);
       } else {

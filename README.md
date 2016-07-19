@@ -31,6 +31,10 @@ You should register for [Filestack(filepicker)](https://www.filestack.com) and g
 ```
 <ReactFilepicker apikey={Your API Key} mode="export" defaultWidget={false} options={options} onSuccess={this.yourCallbackFunction} />
 ```
+Available modes:
+* convert
+* export
+* pickAndStore
 
 make your own options and callback function, connect it and get results(fpfiles or blob object)
 ```
@@ -85,7 +89,7 @@ git clone this project and open index.html
 > **optional** string. When using custom button, you can set className. Also included in **options** prop, so use only when it's necessary.
 
 ## Wanna Contribute?
-Please contribute to this package via **Pull Request**, or you can open **Issues**! 
+Please contribute to this package via **Pull Request**, or you can open **Issues**!
 
 ## Future
 - server side rendering
