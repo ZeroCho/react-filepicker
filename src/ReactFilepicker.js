@@ -23,6 +23,14 @@ class ReactFilepicker extends Component {
 
   static propTypes = {
     blob: PropTypes.object,
+    apikey: PropTypes.string.isRequired,
+    defaultWidget: PropTypes.bool,
+    mode: PropTypes.string,
+    buttonText: PropTypes.string,
+    buttonClass: PropTypes.string,
+    onSuccess: PropTypes.func,
+    onError: PropTypes.func,
+    onProgress: PropTypes.func,
     options: PropTypes.shape({
       url: PropTypes.string,
       suggestedFilename: PropTypes.string,
@@ -84,14 +92,6 @@ class ReactFilepicker extends Component {
       storeRegion: PropTypes.string,
       access: PropTypes.string,
     }),
-    apikey: PropTypes.string.isRequired,
-    defaultWidget: PropTypes.bool,
-    mode: PropTypes.string,
-    buttonText: PropTypes.string,
-    buttonClass: PropTypes.string,
-    onSuccess: PropTypes.func,
-    onError: PropTypes.func,
-    onProgress: PropTypes.func,
   };
 
   componentDidMount() {
@@ -115,7 +115,7 @@ class ReactFilepicker extends Component {
       };
       if (typeof window !== 'undefined') {
         filepicker.constructWidget(element);
-        element.type = '';
+        element.setAttribute('type', '');
       }
     }
   }
@@ -160,24 +160,22 @@ class ReactFilepicker extends Component {
   };
 
   render() {
-    const { defaultWidget, buttonClass, buttonText, options, ...otherProps } = this.props;
+    const { defaultWidget, buttonClass, buttonText, options } = this.props;
     if (defaultWidget) {
       return (
-        <input ref="target" type="filepicker" {...otherProps} />
-      )
-    } else {
-      return (
-        <button
-          name="filepicker"
-          ref="fpButton"
-          onClick={this.onClickPick}
-          className={buttonClass || options.buttonClass}
-          {...otherProps}
-        >
-          {buttonText || options.buttonText}
-        </button>
+        <input ref="target" type="filepicker" />
       )
     }
+    return (
+      <button
+        name="filepicker"
+        ref="fpButton"
+        onClick={this.onClickPick}
+        className={buttonClass || options.buttonClass}
+      >
+        {buttonText || options.buttonText}
+      </button>
+    )
   }
 }
 

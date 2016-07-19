@@ -3,12 +3,11 @@ var webpack = require('webpack');
 var loaders = [
   { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
   {
-    test: /\.css/, exclude: /\.global\.css/,
+    test: /\.css/,
     loaders: [
       'style?sourcemap', 'css?modules&importLoaders=1'
     ]
   },
-  { test: /\.global\.css/, loader: 'style!raw' }
 ];
 
 module.exports = [{
@@ -20,26 +19,15 @@ module.exports = [{
   },
   devtool: 'source-map',
   module: { loaders: loaders },
-  externals: {
-    react: 'react',
-    'react-dom': 'react-dom'
-  },
+  externals: ['react', 'react-dom'],
   plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       }
     }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
     new webpack.ProvidePlugin({
       filepicker: 'filepicker-js',
-      'window.filepicker': 'filepicker-js'
     })
   ]
 }, {
@@ -51,18 +39,6 @@ module.exports = [{
   devtool: 'source-map',
   module: { loaders: loaders },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    }),
     new webpack.ProvidePlugin({
       filepicker: 'filepicker-js',
       'window.filepicker': 'filepicker-js'
