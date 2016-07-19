@@ -65,6 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
         <ReactFilepicker apikey={apikey} defaultWidget={false} onSuccess={callback} />
       </form>
       <form>
+        <div>Custom link(You can put className on the link to style)</div>
+        <ReactFilepicker apikey={apikey} link={true} defaultWidget={false} onSuccess={callback} />
+      </form>
+      <form>
         <div>Custom button with custom options and custom styles</div>
         <ReactFilepicker apikey={apikey} defaultWidget={false} options={customOptions} onSuccess={callback} />
       </form>

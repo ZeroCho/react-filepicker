@@ -1,8 +1,8 @@
 # React Filepicker
-react component for **filepicker**(a.k.a **filestack**) button
+react component for **filepicker**(a.k.a **filestack**)
 
 ## How to install
-[NPM link](https://npmjs.com/package/react-filestack)
+[NPM link](https://npmjs.com/package/react-filepicker)
 ```
 npm install react-filepicker
 ```
@@ -36,7 +36,7 @@ Available modes:
 * export
 * pickAndStore
 
-make your own options and callback function, connect it and get results(fpfiles or blob object)
+make your own options and callback function, connect it to the component and get the results(either fpfiles or blob object)
 ```
 const options = {
   buttonText: 'Pick Me',
@@ -51,12 +51,15 @@ yourCallbackFunction(fpfiles) {
 ```
 
 **Link instead of button**
+if you want a custom button to be a link, just put **link** props
 ```
 <ReactFilepicker apikey={Your API Key} defaultWidget={false} link options={options} onSuccess={this.yourCallbackFunction} />
 ```
 
 ## Result
-![filestack](https://cloud.githubusercontent.com/assets/10962668/16173096/634160de-35d1-11e6-9b6a-1803b53c30d6.png)
+![filepicker](https://cloud.githubusercontent.com/assets/10962668/16950040/17a2eb94-4df9-11e6-8995-fb120a466400.png)
+Works well with IE...
+
 ## Demo
 git clone this project and open index.html
 [Link](https://github.com/zerocho/react-filestack/blob/master/index.html)
@@ -86,7 +89,7 @@ git clone this project and open index.html
 > **optional** function. send progress object as callback parameter
 
 > ### options
-> **optional** object. **Detailed options for button. See Javascript API of official documentation. Put everything in it if you think you have to**
+> **optional** object. **Detailed options for button. See Javascript API of [official documentation](https://filestack.com/docs). Put everything in it if you think you have to**
 
 > ### buttonText
 > **optional** string. When using custom button, you can set your own text. It is included in **options** prop(as options.buttonText), so use only when it's necessary.

@@ -150,6 +150,16 @@
 	      _react2.default.createElement(
 	        'div',
 	        null,
+	        'Custom link(You can put className on the link to style)'
+	      ),
+	      _react2.default.createElement(_ReactFilepicker2.default, { apikey: apikey, link: true, defaultWidget: false, onSuccess: callback })
+	    ),
+	    _react2.default.createElement(
+	      'form',
+	      null,
+	      _react2.default.createElement(
+	        'div',
+	        null,
 	        'Custom button with custom options and custom styles'
 	      ),
 	      _react2.default.createElement(_ReactFilepicker2.default, { apikey: apikey, defaultWidget: false, options: customOptions, onSuccess: callback })
@@ -21353,18 +21363,21 @@
 	      var defaultWidget = _props2.defaultWidget;
 	      var buttonClass = _props2.buttonClass;
 	      var buttonText = _props2.buttonText;
+	      var link = _props2.link;
 	      var options = _props2.options;
 	
 	      if (defaultWidget) {
 	        return _react2.default.createElement('input', { ref: 'target', type: 'filepicker' });
 	      }
+	      var Tag = link ? 'a' : 'button';
 	      return _react2.default.createElement(
-	        'button',
+	        Tag,
 	        {
 	          name: 'filepicker',
 	          ref: 'fpButton',
 	          onClick: this.onClickPick,
-	          className: buttonClass || options.buttonClass
+	          className: buttonClass || options.buttonClass,
+	          href: link ? 'javascript:void(0)' : undefined
 	        },
 	        buttonText || options.buttonText
 	      );
@@ -21397,6 +21410,7 @@
 	  blob: _react.PropTypes.object,
 	  apikey: _react.PropTypes.string.isRequired,
 	  defaultWidget: _react.PropTypes.bool,
+	  link: _react.PropTypes.bool,
 	  mode: _react.PropTypes.string,
 	  buttonText: _react.PropTypes.string,
 	  buttonClass: _react.PropTypes.string,
