@@ -37,6 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
     isWriteable: false,
     size: 28683
   };
+  var pickAndStoreOptions = {
+    buttonText: 'PickAndStore',
+    location: 'S3'
+  };
   var exportOptions = {
     url: 'https://www.filestackapi.com/api/file/lQ9LalJTKmuou4WSw9LM',
     mimetype: 'image/png',
@@ -63,6 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
       <form>
         <div>Custom button with custom options and custom styles</div>
         <ReactFilepicker apikey={apikey} defaultWidget={false} options={customOptions} onSuccess={callback} />
+      </form>
+      <form>
+        <div>PickAndStore button</div>
+        <ReactFilepicker apikey={apikey} mode="pickAndStore" defaultWidget={false} options={pickAndStoreOptions} onSuccess={callback} />
       </form>
       <form>
         <div>Export button</div>

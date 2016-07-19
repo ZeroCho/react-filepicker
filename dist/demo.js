@@ -98,6 +98,10 @@
 	    isWriteable: false,
 	    size: 28683
 	  };
+	  var pickAndStoreOptions = {
+	    buttonText: 'PickAndStore',
+	    location: 'S3'
+	  };
 	  var exportOptions = {
 	    url: 'https://www.filestackapi.com/api/file/lQ9LalJTKmuou4WSw9LM',
 	    mimetype: 'image/png',
@@ -149,6 +153,16 @@
 	        'Custom button with custom options and custom styles'
 	      ),
 	      _react2.default.createElement(_ReactFilepicker2.default, { apikey: apikey, defaultWidget: false, options: customOptions, onSuccess: callback })
+	    ),
+	    _react2.default.createElement(
+	      'form',
+	      null,
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        'PickAndStore button'
+	      ),
+	      _react2.default.createElement(_ReactFilepicker2.default, { apikey: apikey, mode: 'pickAndStore', defaultWidget: false, options: pickAndStoreOptions, onSuccess: callback })
 	    ),
 	    _react2.default.createElement(
 	      'form',
@@ -21286,6 +21300,8 @@
 	          filepicker.exportFile(blob || options.url, options, onFinished, onFail, onUploading);
 	        } else if (mode === 'convert') {
 	          filepicker.convert(blob, options, options, onFinished, onFail, onUploading);
+	        } else if (mode === 'pickAndStore') {
+	          filepicker.pickAndStore(options, options, onFinished, onFail, onUploading);
 	        } else if (options.multiple) {
 	          filepicker.pickMultiple(options, onFinished, onFail, onUploading);
 	        } else {
@@ -21326,7 +21342,7 @@
 	        };
 	        if (typeof window !== 'undefined') {
 	          filepicker.constructWidget(element);
-	          element.type = '';
+	          element.setAttribute('type', '');
 	        }
 	      }
 	    }
@@ -21396,6 +21412,7 @@
 	    mimetypes: _react.PropTypes.arrayOf(_react.PropTypes.string),
 	    extension: _react.PropTypes.string,
 	    extensions: _react.PropTypes.arrayOf(_react.PropTypes.string),
+	    multiple: _react.PropTypes.bool,
 	    maxSize: _react.PropTypes.number,
 	    maxFiles: _react.PropTypes.number,
 	    folders: _react.PropTypes.bool,
@@ -21446,6 +21463,7 @@
 	    location: _react.PropTypes.string,
 	    path: _react.PropTypes.string,
 	    storeRegion: _react.PropTypes.string,
+	    storeContainer: _react.PropTypes.string,
 	    access: _react.PropTypes.string
 	  })
 	};

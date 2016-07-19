@@ -83,17 +83,21 @@ git clone this project and open index.html
 > **optional** object. **Detailed options for button. See Javascript API of official documentation. Put everything in it if you think you have to**
 
 > ### buttonText
-> **optional** string. When using custom button, you can set your own text. Also included in **options** prop, so use only when it's necessary.
+> **optional** string. When using custom button, you can set your own text. It is included in **options** prop(as options.buttonText), so use only when it's necessary.
 
 > ### buttonClass
-> **optional** string. When using custom button, you can set className. Also included in **options** prop, so use only when it's necessary.
+> **optional** string. When using custom button, you can set className. It is included in **options** prop(as options.buttonClass), so use only when it's necessary.
 
 ## Wanna Contribute?
 Please contribute to this package via **Pull Request**, or you can open **Issues**!
 
+## Contributors
+- Zero Cho
+- Łukasz Kornek
+
 ## Future
-- server side rendering
-- add other methods than pick, convert, export and pickAndMultiple
+- server side rendering(currently you should load this package in componentWillMount method)
+- add other methods than pick, convert, export, pickAndStore and pickAndMultiple
 
 ## License
 MIT

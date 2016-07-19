@@ -40,6 +40,7 @@ class ReactFilepicker extends Component {
       mimetypes: PropTypes.arrayOf(PropTypes.string),
       extension: PropTypes.string,
       extensions: PropTypes.arrayOf(PropTypes.string),
+      multiple: PropTypes.bool,
       maxSize: PropTypes.number,
       maxFiles: PropTypes.number,
       folders: PropTypes.bool,
@@ -90,6 +91,7 @@ class ReactFilepicker extends Component {
       location: PropTypes.string,
       path: PropTypes.string,
       storeRegion: PropTypes.string,
+      storeContainer: PropTypes.string,
       access: PropTypes.string,
     }),
   };
