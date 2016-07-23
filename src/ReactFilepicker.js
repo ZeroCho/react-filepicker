@@ -99,11 +99,13 @@ class ReactFilepicker extends Component {
 
   componentDidMount() {
     const { apikey, buttonText, buttonClass, onSuccess, options, mode } = this.props;
-    const button = this.refs.fpButton;
-    if (!button) { // if using default widget
+    const custom = this.refs.fpButton;
+    if (!custom) { // if using default widget
       const element = this.refs.target;
       if (mode === 'dragdrop') {
         element.setAttribute('type', 'filepicker-dragdrop');
+      } else if (mode === 'pickMultiple') {
+        options.multiple = true;
       }
       applyOptions(element, options, mode);
       element.setAttribute('data-fp-apikey', apikey);
@@ -156,7 +158,7 @@ class ReactFilepicker extends Component {
         filepicker.convert(blob, options, options, onFinished, onFail, onUploading);
       } else if (mode === 'pickAndStore') {
         filepicker.pickAndStore(options, options, onFinished, onFail, onUploading);
-      } else if (options.multiple) {
+      } else if (mode === 'pickMultiple' || options.multiple) {
         filepicker.pickMultiple(options, onFinished, onFail, onUploading);
       } else {
         filepicker.pick(options, onFinished, onFail, onUploading);
@@ -171,7 +173,7 @@ class ReactFilepicker extends Component {
         <input ref="target" type="filepicker" />
       )
     }
-    const Tag = link ? 'a' : 'button'
+    const Tag = link ? 'a' : 'button';
     return (
       <Tag
         name="filepicker"
@@ -182,7 +184,7 @@ class ReactFilepicker extends Component {
       >
         {buttonText || options.buttonText}
       </Tag>
-    )
+    );
   }
 }
 

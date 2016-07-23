@@ -1,8 +1,8 @@
 # React Filepicker
 react component for **filepicker**(a.k.a **filestack**)
-[Live Demo](https://zerocho.herokuapp.com/portfolio/ReactFilepicker)
 
 ## How to install
+[Live Demo](https://zerocho.herokuapp.com/portfolio/ReactFilepicker)
 [NPM link](https://npmjs.com/package/react-filepicker)
 ```
 npm install react-filepicker
@@ -36,6 +36,7 @@ Available modes:
 * convert
 * export
 * pickAndStore
+* pickMultiple (You can put 'multiple: true' in **options** object instead)
 
 make your own options and callback function, connect it to the component and get the results(either fpfiles or blob object)
 ```
