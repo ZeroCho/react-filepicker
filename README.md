@@ -1,5 +1,6 @@
 # React Filepicker
 react component for **filepicker**(a.k.a **filestack**)
+[Live Demo](https://zerocho.herokuapp.com/portfolio/ReactFilepicker)
 
 ## How to install
 [NPM link](https://npmjs.com/package/react-filepicker)
@@ -62,7 +63,8 @@ Works well with IE...
 
 ## Demo
 git clone this project and open index.html
-[Link](https://github.com/zerocho/react-filestack/blob/master/index.html)
+You can also see live demo here
+[Link](https://zerocho.herokuapp.com/portfolio/ReactFilepicker)
 
 ## Props
 [Official Filestack Documentation](https://filestack.com/docs)
