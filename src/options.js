@@ -45,7 +45,7 @@ export default function applyOptions(domElement, options, mode) {
   setAttrIfExistsArray(options, domElement, generalOptionsMap);
   if (mode === "export") {
     setAttrIfExists("suggestedFilename", fpoptions, "data-fp-suggestedFilename", domElement);
-  } else if (mode === "pick") {
+  } else if (mode === "pick" || mode === 'pickMultiple') {
     setAttrIfExistsArray(options, domElement, pickOnlyOptionsMap);
     setAttrIfExistsArray(options.webcam, domElement, webcamOptionsMap);
   }
@@ -55,14 +55,14 @@ export default function applyOptions(domElement, options, mode) {
   if (options.service) {
     domElement.setAttribute('data-fp-service', options.service);
   }
-  const arrayToJoin = [ "extensions", "mimetypes", "imageDim", "imageMin", "imageMax", "cropDim", "cropMax", "cropMin", "webcamDim", "conversions" ];
+  const arrayToJoin = ["extensions", "mimetypes", "imageDim", "imageMin", "imageMax", "cropDim", "cropMax", "cropMin", "webcamDim", "conversions"];
   for (let key in arrayToJoin) {
     joinIfExist(arrayToJoin[key], options);
   }
   if (options.folders == true) {
     domElement.setAttribute('data-fp-folders', 'true');
   }
-  if (options.multiple == true) {
+  if (options.multiple == true || mode === 'pickMultiple') {
     return domElement.setAttribute('data-fp-multiple', 'true');
   }
   return domElement;

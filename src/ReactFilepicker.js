@@ -23,6 +23,7 @@ class ReactFilepicker extends Component {
 
   static propTypes = {
     blob: PropTypes.object,
+    input: PropTypes.any,
     apikey: PropTypes.string.isRequired,
     defaultWidget: PropTypes.bool,
     link: PropTypes.bool,
@@ -34,6 +35,7 @@ class ReactFilepicker extends Component {
     onProgress: PropTypes.func,
     options: PropTypes.shape({
       url: PropTypes.string,
+      filename: PropTypes.string,
       suggestedFilename: PropTypes.string,
       buttonText: PropTypes.string,
       buttonClass: PropTypes.string,
@@ -94,6 +96,13 @@ class ReactFilepicker extends Component {
       storeRegion: PropTypes.string,
       storeContainer: PropTypes.string,
       access: PropTypes.string,
+      base64encode: PropTypes.bool,
+      base64decode: PropTypes.bool,
+      asText: PropTypes.bool,
+      cache: PropTypes.bool,
+      uploaded: PropTypes.bool,
+      writeable: PropTypes.bool,
+      md5: PropTypes.bool,
     }),
   };
 
@@ -128,7 +137,7 @@ class ReactFilepicker extends Component {
   onClickPick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const { apikey, onSuccess, onError, onProgress, options, mode, blob } = this.props;
+    const { apikey, onSuccess, onError, onProgress, options, mode, blob, input } = this.props;
     const onFinished = (blob) => {
       if (typeof onSuccess === 'function') {
         onSuccess(blob);
@@ -160,6 +169,18 @@ class ReactFilepicker extends Component {
         filepicker.pickAndStore(options, options, onFinished, onFail, onUploading);
       } else if (mode === 'pickMultiple' || options.multiple) {
         filepicker.pickMultiple(options, onFinished, onFail, onUploading);
+      } else if (mode === 'read') {
+        filepicker.read(input || options.url, options, onFinished, onError, onUploading);
+      } else if (mode === 'store') {
+        filepicker.store(input, options, onFinished, onError, onUploading);
+      } else if (mode === 'storeUrl') {
+        filepicker.storeUrl(options.url, options, onFinished, onError, onUploading);
+      } else if (mode === 'stat') {
+        filepicker.stat(blob, options, onFinished, onError);
+      } else if (mode === 'write') {
+        filepicker.write(blob, input, options, onFinished, onError, onUploading);
+      } else if (mode === 'writeUrl') {
+        filepicker.writeUrl(blob, options.url, options, onFinished, onError, onUploading);
       } else {
         filepicker.pick(options, onFinished, onFail, onUploading);
       }

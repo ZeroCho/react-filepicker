@@ -21282,6 +21282,7 @@
 	      var options = _this$props.options;
 	      var mode = _this$props.mode;
 	      var blob = _this$props.blob;
+	      var input = _this$props.input;
 	
 	      var onFinished = function onFinished(blob) {
 	        if (typeof onSuccess === 'function') {
@@ -21312,8 +21313,20 @@
 	          filepicker.convert(blob, options, options, onFinished, onFail, onUploading);
 	        } else if (mode === 'pickAndStore') {
 	          filepicker.pickAndStore(options, options, onFinished, onFail, onUploading);
-	        } else if (options.multiple) {
+	        } else if (mode === 'pickMultiple' || options.multiple) {
 	          filepicker.pickMultiple(options, onFinished, onFail, onUploading);
+	        } else if (mode === 'read') {
+	          filepicker.read(input || options.url, options, onFinished, onError, onUploading);
+	        } else if (mode === 'store') {
+	          filepicker.store(input, options, onFinished, onError, onUploading);
+	        } else if (mode === 'storeUrl') {
+	          filepicker.storeUrl(options.url, options, onFinished, onError, onUploading);
+	        } else if (mode === 'stat') {
+	          filepicker.stat(blob, options, onFinished, onError);
+	        } else if (mode === 'write') {
+	          filepicker.write(blob, input, options, onFinished, onError, onUploading);
+	        } else if (mode === 'writeUrl') {
+	          filepicker.writeUrl(blob, options.url, options, onFinished, onError, onUploading);
 	        } else {
 	          filepicker.pick(options, onFinished, onFail, onUploading);
 	        }
@@ -21332,12 +21345,14 @@
 	      var options = _props.options;
 	      var mode = _props.mode;
 	
-	      var button = this.refs.fpButton;
-	      if (!button) {
+	      var custom = this.refs.fpButton;
+	      if (!custom) {
 	        // if using default widget
 	        var element = this.refs.target;
 	        if (mode === 'dragdrop') {
 	          element.setAttribute('type', 'filepicker-dragdrop');
+	        } else if (mode === 'pickMultiple') {
+	          options.multiple = true;
 	        }
 	        (0, _options2.default)(element, options, mode);
 	        element.setAttribute('data-fp-apikey', apikey);
@@ -21408,6 +21423,7 @@
 	};
 	ReactFilepicker.propTypes = {
 	  blob: _react.PropTypes.object,
+	  input: _react.PropTypes.any,
 	  apikey: _react.PropTypes.string.isRequired,
 	  defaultWidget: _react.PropTypes.bool,
 	  link: _react.PropTypes.bool,
@@ -21419,6 +21435,7 @@
 	  onProgress: _react.PropTypes.func,
 	  options: _react.PropTypes.shape({
 	    url: _react.PropTypes.string,
+	    filename: _react.PropTypes.string,
 	    suggestedFilename: _react.PropTypes.string,
 	    buttonText: _react.PropTypes.string,
 	    buttonClass: _react.PropTypes.string,
@@ -21478,7 +21495,14 @@
 	    path: _react.PropTypes.string,
 	    storeRegion: _react.PropTypes.string,
 	    storeContainer: _react.PropTypes.string,
-	    access: _react.PropTypes.string
+	    access: _react.PropTypes.string,
+	    base64encode: _react.PropTypes.bool,
+	    base64decode: _react.PropTypes.bool,
+	    asText: _react.PropTypes.bool,
+	    cache: _react.PropTypes.bool,
+	    uploaded: _react.PropTypes.bool,
+	    writeable: _react.PropTypes.bool,
+	    md5: _react.PropTypes.bool
 	  })
 	};
 	exports.default = ReactFilepicker;
@@ -25446,7 +25470,7 @@
 	  setAttrIfExistsArray(options, domElement, generalOptionsMap);
 	  if (mode === "export") {
 	    setAttrIfExists("suggestedFilename", fpoptions, "data-fp-suggestedFilename", domElement);
-	  } else if (mode === "pick") {
+	  } else if (mode === "pick" || mode === 'pickMultiple') {
 	    setAttrIfExistsArray(options, domElement, pickOnlyOptionsMap);
 	    setAttrIfExistsArray(options.webcam, domElement, webcamOptionsMap);
 	  }
@@ -25463,7 +25487,7 @@
 	  if (options.folders == true) {
 	    domElement.setAttribute('data-fp-folders', 'true');
 	  }
-	  if (options.multiple == true) {
+	  if (options.multiple == true || mode === 'pickMultiple') {
 	    return domElement.setAttribute('data-fp-multiple', 'true');
 	  }
 	  return domElement;

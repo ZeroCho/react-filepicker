@@ -37,6 +37,12 @@ Available modes:
 * export
 * pickAndStore
 * pickMultiple (You can put 'multiple: true' in **options** object instead)
+* read
+* store
+* storeUrl
+* write
+* writeUrl
+* stat
 
 make your own options and callback function, connect it to the component and get the results(either fpfiles or blob object)
 ```
@@ -80,7 +86,10 @@ You can also see live demo here
 > **optional** string. **default** 'pick'. **options** `['pick', 'dragdrop', 'convert', 'export']`. convert and export modes are for custom button.
 
 > ### blob
-> **optional** object. use if you need to insert blob object for convert or export
+> **optional** object. use if you need to insert blob object for convert, export, stat, write or writeUrl mode.
+
+> ### input
+> **optional** object. use this for read, store, storeUrl or write mode.
 
 > ### onSuccess
 > **optional** function. get result(fpfiles or blob object) after upload is done.
