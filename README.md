@@ -3,6 +3,7 @@ react component for **filepicker**(a.k.a **filestack**)
 
 ## How to install
 [Live Demo](https://zerocho.herokuapp.com/portfolio/ReactFilepicker)
+s
 [NPM link](https://npmjs.com/package/react-filepicker)
 ```
 npm install react-filepicker
