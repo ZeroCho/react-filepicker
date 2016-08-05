@@ -21233,7 +21233,7 @@
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(filepicker) {'use strict';
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -21245,9 +21245,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _options = __webpack_require__(175);
+	var _options = __webpack_require__(173);
 	
 	var _options2 = _interopRequireDefault(_options);
+	
+	var _filepickerJs = __webpack_require__(174);
+	
+	var _filepickerJs2 = _interopRequireDefault(_filepickerJs);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -21306,29 +21310,29 @@
 	        }
 	      };
 	      if (typeof window !== 'undefined') {
-	        filepicker.setKey(apikey);
+	        _filepickerJs2.default.setKey(apikey);
 	        if (mode === 'export') {
-	          filepicker.exportFile(blob || options.url, options, onFinished, onFail, onUploading);
+	          _filepickerJs2.default.exportFile(blob || options.url, options, onFinished, onFail, onUploading);
 	        } else if (mode === 'convert') {
-	          filepicker.convert(blob, options, options, onFinished, onFail, onUploading);
+	          _filepickerJs2.default.convert(blob, options, options, onFinished, onFail, onUploading);
 	        } else if (mode === 'pickAndStore') {
-	          filepicker.pickAndStore(options, options, onFinished, onFail, onUploading);
+	          _filepickerJs2.default.pickAndStore(options, options, onFinished, onFail, onUploading);
 	        } else if (mode === 'pickMultiple' || options.multiple) {
-	          filepicker.pickMultiple(options, onFinished, onFail, onUploading);
+	          _filepickerJs2.default.pickMultiple(options, onFinished, onFail, onUploading);
 	        } else if (mode === 'read') {
-	          filepicker.read(input || options.url, options, onFinished, onError, onUploading);
+	          _filepickerJs2.default.read(input || options.url, options, onFinished, onError, onUploading);
 	        } else if (mode === 'store') {
-	          filepicker.store(input, options, onFinished, onError, onUploading);
+	          _filepickerJs2.default.store(input, options, onFinished, onError, onUploading);
 	        } else if (mode === 'storeUrl') {
-	          filepicker.storeUrl(options.url, options, onFinished, onError, onUploading);
+	          _filepickerJs2.default.storeUrl(options.url, options, onFinished, onError, onUploading);
 	        } else if (mode === 'stat') {
-	          filepicker.stat(blob, options, onFinished, onError);
+	          _filepickerJs2.default.stat(blob, options, onFinished, onError);
 	        } else if (mode === 'write') {
-	          filepicker.write(blob, input, options, onFinished, onError, onUploading);
+	          _filepickerJs2.default.write(blob, input, options, onFinished, onError, onUploading);
 	        } else if (mode === 'writeUrl') {
-	          filepicker.writeUrl(blob, options.url, options, onFinished, onError, onUploading);
+	          _filepickerJs2.default.writeUrl(blob, options.url, options, onFinished, onError, onUploading);
 	        } else {
-	          filepicker.pick(options, onFinished, onFail, onUploading);
+	          _filepickerJs2.default.pick(options, onFinished, onFail, onUploading);
 	        }
 	      }
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
@@ -21366,7 +21370,7 @@
 	          }
 	        };
 	        if (typeof window !== 'undefined') {
-	          filepicker.constructWidget(element);
+	          _filepickerJs2.default.constructWidget(element);
 	          element.setAttribute('type', '');
 	        }
 	      }
@@ -21506,22 +21510,121 @@
 	  })
 	};
 	exports.default = ReactFilepicker;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(173)))
 
 /***/ },
 /* 173 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = applyOptions;
+	function applyOptions(domElement, options, mode) {
+	  var generalOptionsMap = {
+	    "data-fp-container": "container",
+	    "data-fp-mimetype": "mimetype",
+	    "data-fp-extension": "extension",
+	    "data-fp-openTo": "openTo",
+	    "data-fp-debug": "debug",
+	    "data-fp-signature": "signature",
+	    "data-fp-policy": "policy",
+	    "data-fp-language": "language",
+	    "data-fp-background-upload": "backgroundUpload",
+	    "data-fp-hide": "hide",
+	    "data-fp-custom-css": "customCss",
+	    "data-fp-crop-force": "cropForce",
+	    "data-fp-crop-ratio": "cropRatio",
+	    "data-fp-crop-dim": "cropDim",
+	    "data-fp-crop-max": "cropMax",
+	    "data-fp-crop-min": "cropMin",
+	    "data-fp-show-close": "showClose",
+	    "data-fp-conversions": "conversions",
+	    "data-fp-custom-text": "customText",
+	    "data-fp-custom-source-container": "customSourceContainer",
+	    "data-fp-custom-source-path": "customSourcePath"
+	  },
+	      pickOnlyOptionsMap = {
+	    "data-fp-mimetypes": "mimetypes",
+	    "data-fp-extensions": "extensions",
+	    "data-fp-maxSize": "maxSize",
+	    "data-fp-maxFiles": "maxFiles",
+	    "data-fp-store-location": "storeLocation",
+	    "data-fp-store-path": "storePath",
+	    "data-fp-store-container": "storeContainer",
+	    "data-fp-store-region": "storeRegion",
+	    "data-fp-store-access": "storeAccess",
+	    "data-fp-image-quality": "imageQuality",
+	    "data-fp-image-dim": "imageDim",
+	    "data-fp-image-max": "imageMax",
+	    "data-fp-image-min": "imageMin"
+	  },
+	      webcamOptionsMap = {
+	    "data-fp-video-recording-resolution": "videoRes",
+	    "data-fp-webcam-dim": "webcamDim",
+	    "data-fp-video-length": "videoLen",
+	    "data-fp-audio-length": "audioLen"
+	  };
+	  mode = mode || "pick";
+	  setAttrIfExistsArray(options, domElement, generalOptionsMap);
+	  if (mode === "export") {
+	    setAttrIfExists("suggestedFilename", fpoptions, "data-fp-suggestedFilename", domElement);
+	  } else if (mode === "pick" || mode === 'pickMultiple') {
+	    setAttrIfExistsArray(options, domElement, pickOnlyOptionsMap);
+	    setAttrIfExistsArray(options.webcam, domElement, webcamOptionsMap);
+	  }
+	  if (options.services) {
+	    domElement.setAttribute('data-fp-services', options.services.join());
+	  }
+	  if (options.service) {
+	    domElement.setAttribute('data-fp-service', options.service);
+	  }
+	  var arrayToJoin = ["extensions", "mimetypes", "imageDim", "imageMin", "imageMax", "cropDim", "cropMax", "cropMin", "webcamDim", "conversions"];
+	  for (var key in arrayToJoin) {
+	    joinIfExist(arrayToJoin[key], options);
+	  }
+	  if (options.folders == true) {
+	    domElement.setAttribute('data-fp-folders', 'true');
+	  }
+	  if (options.multiple == true || mode === 'pickMultiple') {
+	    return domElement.setAttribute('data-fp-multiple', 'true');
+	  }
+	  return domElement;
+	}
+	
+	function setAttrIfExists(key, options, attrname, dom) {
+	  if (options[key]) {
+	    dom.setAttribute(attrname, options[key]);
+	  }
+	}
+	
+	function setAttrIfExistsArray(fpoptions, domElement, optionsObj) {
+	  for (var option in optionsObj) {
+	    setAttrIfExists(optionsObj[option], fpoptions, option, domElement);
+	  }
+	}
+	
+	function joinIfExist(key, options) {
+	  if (options[key]) {
+	    options[key] = options[key].join();
+	  }
+	}
+
+/***/ },
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(filepicker) {/*
 	    Module definition for browserify
 	*/
-	__webpack_require__(174);
+	__webpack_require__(175);
 	module.exports = filepicker;
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(173)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(174)))
 
 /***/ },
-/* 174 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_filepicker, filepicker) {"use strict";
@@ -22556,7 +22659,7 @@
 	"use strict";
 	
 	filepicker.extend(function() {
-	    var fp = this, VERSION = "2.4.14";
+	    var fp = this, VERSION = "2.4.16";
 	    fp.API_VERSION = "v2";
 	    var setKey = function(key) {
 	        fp.apikey = key;
@@ -22965,6 +23068,14 @@
 	    var responsive = function() {
 	        fp.responsiveImages.update.apply(null, arguments);
 	    };
+	    var logout = function(options) {
+	        options = options || {};
+	        fp.ajax.get(fp.urls.LOGOUT, {
+	            success: options.onSuccess,
+	            error: options.onError,
+	            withCredentials: true
+	        });
+	    };
 	    return {
 	        setKey: setKey,
 	        setResponsiveOptions: setResponsiveOptions,
@@ -22988,6 +23099,7 @@
 	        makeDropPane: makeDropPane,
 	        FilepickerException: FilepickerException,
 	        responsive: responsive,
+	        logout: logout,
 	        version: VERSION
 	    };
 	}, true);
@@ -23165,6 +23277,7 @@
 	        STORE: store_url,
 	        PICK: pick_url,
 	        EXPORT: export_url,
+	        LOGOUT: base + "/api/clients/unauth",
 	        constructPickUrl: constructPickUrl,
 	        constructConvertUrl: constructConvertUrl,
 	        constructPickFolderUrl: constructPickFolderUrl,
@@ -23329,6 +23442,9 @@
 	        if (data && method == "GET") {
 	            url += (url.indexOf("?") !== -1 ? "&" : "?") + data;
 	            data = null;
+	        }
+	        if (options.withCredentials) {
+	            xhr.withCredentials = true;
 	        }
 	        xhr.open(method, url, async);
 	        if (options.json) {
@@ -25409,107 +25525,8 @@
 	        delete filepicker._queue;
 	    }
 	})();
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(173), __webpack_require__(173)))
-
-/***/ },
-/* 175 */
-/***/ function(module, exports) {
-
-	"use strict";
 	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = applyOptions;
-	function applyOptions(domElement, options, mode) {
-	  var generalOptionsMap = {
-	    "data-fp-container": "container",
-	    "data-fp-mimetype": "mimetype",
-	    "data-fp-extension": "extension",
-	    "data-fp-openTo": "openTo",
-	    "data-fp-debug": "debug",
-	    "data-fp-signature": "signature",
-	    "data-fp-policy": "policy",
-	    "data-fp-language": "language",
-	    "data-fp-background-upload": "backgroundUpload",
-	    "data-fp-hide": "hide",
-	    "data-fp-custom-css": "customCss",
-	    "data-fp-crop-force": "cropForce",
-	    "data-fp-crop-ratio": "cropRatio",
-	    "data-fp-crop-dim": "cropDim",
-	    "data-fp-crop-max": "cropMax",
-	    "data-fp-crop-min": "cropMin",
-	    "data-fp-show-close": "showClose",
-	    "data-fp-conversions": "conversions",
-	    "data-fp-custom-text": "customText",
-	    "data-fp-custom-source-container": "customSourceContainer",
-	    "data-fp-custom-source-path": "customSourcePath"
-	  },
-	      pickOnlyOptionsMap = {
-	    "data-fp-mimetypes": "mimetypes",
-	    "data-fp-extensions": "extensions",
-	    "data-fp-maxSize": "maxSize",
-	    "data-fp-maxFiles": "maxFiles",
-	    "data-fp-store-location": "storeLocation",
-	    "data-fp-store-path": "storePath",
-	    "data-fp-store-container": "storeContainer",
-	    "data-fp-store-region": "storeRegion",
-	    "data-fp-store-access": "storeAccess",
-	    "data-fp-image-quality": "imageQuality",
-	    "data-fp-image-dim": "imageDim",
-	    "data-fp-image-max": "imageMax",
-	    "data-fp-image-min": "imageMin"
-	  },
-	      webcamOptionsMap = {
-	    "data-fp-video-recording-resolution": "videoRes",
-	    "data-fp-webcam-dim": "webcamDim",
-	    "data-fp-video-length": "videoLen",
-	    "data-fp-audio-length": "audioLen"
-	  };
-	  mode = mode || "pick";
-	  setAttrIfExistsArray(options, domElement, generalOptionsMap);
-	  if (mode === "export") {
-	    setAttrIfExists("suggestedFilename", fpoptions, "data-fp-suggestedFilename", domElement);
-	  } else if (mode === "pick" || mode === 'pickMultiple') {
-	    setAttrIfExistsArray(options, domElement, pickOnlyOptionsMap);
-	    setAttrIfExistsArray(options.webcam, domElement, webcamOptionsMap);
-	  }
-	  if (options.services) {
-	    domElement.setAttribute('data-fp-services', options.services.join());
-	  }
-	  if (options.service) {
-	    domElement.setAttribute('data-fp-service', options.service);
-	  }
-	  var arrayToJoin = ["extensions", "mimetypes", "imageDim", "imageMin", "imageMax", "cropDim", "cropMax", "cropMin", "webcamDim", "conversions"];
-	  for (var key in arrayToJoin) {
-	    joinIfExist(arrayToJoin[key], options);
-	  }
-	  if (options.folders == true) {
-	    domElement.setAttribute('data-fp-folders', 'true');
-	  }
-	  if (options.multiple == true || mode === 'pickMultiple') {
-	    return domElement.setAttribute('data-fp-multiple', 'true');
-	  }
-	  return domElement;
-	}
-	
-	function setAttrIfExists(key, options, attrname, dom) {
-	  if (options[key]) {
-	    dom.setAttribute(attrname, options[key]);
-	  }
-	}
-	
-	function setAttrIfExistsArray(fpoptions, domElement, optionsObj) {
-	  for (var option in optionsObj) {
-	    setAttrIfExists(optionsObj[option], fpoptions, option, domElement);
-	  }
-	}
-	
-	function joinIfExist(key, options) {
-	  if (options[key]) {
-	    options[key] = options[key].join();
-	  }
-	}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(174), __webpack_require__(174)))
 
 /***/ },
 /* 176 */

@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import applyOptions from './options';
+import filepicker from 'filepicker-js';
+
 class ReactFilepicker extends Component {
   static defaultProps = {
     defaultWidget: true,

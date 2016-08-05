@@ -7,11 +7,5 @@
   "env": {
     "browser": true,
     "node": true
-  },
-  "globals": {
-
-  },
-  "rules": {
-
   }
 }

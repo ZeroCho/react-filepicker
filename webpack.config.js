@@ -22,9 +22,12 @@ module.exports = [{
   externals: ['react', 'react-dom'],
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
+      beautify: true,
+      comments: true,
+      mangle: false,
       compress: {
-        warnings: false
-      }
+        dead_code: true,
+      },
     }),
     new webpack.ProvidePlugin({
       filepicker: 'filepicker-js',
