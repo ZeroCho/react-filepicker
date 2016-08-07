@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import applyOptions from './options';
+
 class ReactFilepicker extends Component {
   static defaultProps = {
     defaultWidget: true,
@@ -107,6 +108,7 @@ class ReactFilepicker extends Component {
   };
 
   componentDidMount() {
+    const filepicker = require('filepicker-js');
     const { apikey, buttonText, buttonClass, onSuccess, options, mode } = this.props;
     const custom = this.refs.fpButton;
     if (!custom) { // if using default widget
@@ -127,16 +129,15 @@ class ReactFilepicker extends Component {
           console.log(e.fpfile);
         }
       };
-      if (typeof window !== 'undefined') {
-        filepicker.constructWidget(element);
-        element.setAttribute('type', '');
-      }
+      filepicker.constructWidget(element);
+      element.setAttribute('type', '');
     }
   }
 
   onClickPick = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    const filepicker = require('filepicker-js');
     const { apikey, onSuccess, onError, onProgress, options, mode, blob, input } = this.props;
     const onFinished = (blob) => {
       if (typeof onSuccess === 'function') {
@@ -159,31 +160,29 @@ class ReactFilepicker extends Component {
         console.log(progress);
       }
     };
-    if (typeof window !== 'undefined') {
-      filepicker.setKey(apikey);
-      if (mode === 'export') {
-        filepicker.exportFile(blob || options.url, options, onFinished, onFail, onUploading);
-      } else if (mode === 'convert') {
-        filepicker.convert(blob, options, options, onFinished, onFail, onUploading);
-      } else if (mode === 'pickAndStore') {
-        filepicker.pickAndStore(options, options, onFinished, onFail, onUploading);
-      } else if (mode === 'pickMultiple' || options.multiple) {
-        filepicker.pickMultiple(options, onFinished, onFail, onUploading);
-      } else if (mode === 'read') {
-        filepicker.read(input || options.url, options, onFinished, onError, onUploading);
-      } else if (mode === 'store') {
-        filepicker.store(input, options, onFinished, onError, onUploading);
-      } else if (mode === 'storeUrl') {
-        filepicker.storeUrl(options.url, options, onFinished, onError, onUploading);
-      } else if (mode === 'stat') {
-        filepicker.stat(blob, options, onFinished, onError);
-      } else if (mode === 'write') {
-        filepicker.write(blob, input, options, onFinished, onError, onUploading);
-      } else if (mode === 'writeUrl') {
-        filepicker.writeUrl(blob, options.url, options, onFinished, onError, onUploading);
-      } else {
-        filepicker.pick(options, onFinished, onFail, onUploading);
-      }
+    filepicker.setKey(apikey);
+    if (mode === 'export') {
+      filepicker.exportFile(blob || options.url, options, onFinished, onFail, onUploading);
+    } else if (mode === 'convert') {
+      filepicker.convert(blob, options, options, onFinished, onFail, onUploading);
+    } else if (mode === 'pickAndStore') {
+      filepicker.pickAndStore(options, options, onFinished, onFail, onUploading);
+    } else if (mode === 'pickMultiple' || options.multiple) {
+      filepicker.pickMultiple(options, onFinished, onFail, onUploading);
+    } else if (mode === 'read') {
+      filepicker.read(input || options.url, options, onFinished, onError, onUploading);
+    } else if (mode === 'store') {
+      filepicker.store(input, options, onFinished, onError, onUploading);
+    } else if (mode === 'storeUrl') {
+      filepicker.storeUrl(options.url, options, onFinished, onError, onUploading);
+    } else if (mode === 'stat') {
+      filepicker.stat(blob, options, onFinished, onError);
+    } else if (mode === 'write') {
+      filepicker.write(blob, input, options, onFinished, onError, onUploading);
+    } else if (mode === 'writeUrl') {
+      filepicker.writeUrl(blob, options.url, options, onFinished, onError, onUploading);
+    } else {
+      filepicker.pick(options, onFinished, onFail, onUploading);
     }
   };
 

@@ -5,7 +5,7 @@ var loaders = [
   {
     test: /\.css/,
     loaders: [
-      'style?sourcemap', 'css?modules&importLoaders=1'
+      'style?sourcemap', 'css/locals?modules&importLoaders=1'
     ]
   },
 ];
@@ -22,9 +22,12 @@ module.exports = [{
   externals: ['react', 'react-dom'],
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
+      beautify: true,
+      comments: true,
+      mangle: false,
       compress: {
-        warnings: false
-      }
+        dead_code: true,
+      },
     }),
     new webpack.ProvidePlugin({
       filepicker: 'filepicker-js',

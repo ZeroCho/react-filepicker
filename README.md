@@ -2,9 +2,11 @@
 react component for **filepicker**(a.k.a **filestack**)
 
 ## How to install
-[Live Demo](https://zerocho.herokuapp.com/portfolio/ReactFilepicker)
-s
-[NPM link](https://npmjs.com/package/react-filepicker)
+
+Live Demo
+[Link](https://zerocho.herokuapp.com/portfolio/ReactFilepicker)
+NPM
+[Link](https://npmjs.com/package/react-filepicker)
 ```
 npm install react-filepicker
 ```
@@ -37,7 +39,7 @@ Available modes:
 * convert
 * export
 * pickAndStore
-* pickMultiple (You can put 'multiple: true' in **options** object instead)
+* pickMultiple (Instead, you can use pick mode and put 'multiple: true' in **options** object)
 * read
 * store
 * storeUrl
@@ -116,10 +118,6 @@ Please contribute to this package via **Pull Request**, or you can open **Issues
 ## Contributors
 - Zero Cho
 - Łukasz Kornek
-
-## Future
-- server side rendering(currently you should load this package in componentWillMount method)
-- add other methods than pick, convert, export, pickAndStore and pickAndMultiple
 
 ## License
 MIT
