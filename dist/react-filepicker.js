@@ -106,10 +106,10 @@ function(module, exports, __webpack_require__) {
         };
     }(), _react = __webpack_require__(1), _react2 = _interopRequireDefault(_react), _options = __webpack_require__(2), _options2 = _interopRequireDefault(_options), ReactFilepicker = function(_Component) {
         function ReactFilepicker() {
-            var _Object$getPrototypeO, _temp, _this, _ret;
+            var _ref, _temp, _this, _ret;
             _classCallCheck(this, ReactFilepicker);
             for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
-            return _temp = _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ReactFilepicker)).call.apply(_Object$getPrototypeO, [ this ].concat(args))), 
+            return _temp = _this = _possibleConstructorReturn(this, (_ref = ReactFilepicker.__proto__ || Object.getPrototypeOf(ReactFilepicker)).call.apply(_ref, [ this ].concat(args))), 
             _this.onClickPick = function(e) {
                 var filepicker = __webpack_require__(3);
                 e.stopPropagation(), e.preventDefault();
@@ -388,9 +388,11 @@ function(module, exports, __webpack_require__) {
                     apiIFrame.src = fp.urls.API_COMM, apiIFrame.style.display = "none", document.body.appendChild(apiIFrame);
                 }
             }, communicationsHandler = function(event) {
-                if (event.origin === fp.urls.BASE || event.origin === fp.urls.DIALOG_BASE) {
+                if (event.origin === fp.urls.BASE || event.origin === fp.urls.DIALOG_BASE) try {
                     var data = fp.json.parse(event.data);
                     fp.handlers.run(data);
+                } catch (err) {
+                    console.log("[Filepicker] Failed processing message:", event.data);
                 }
             }, isOpen = !1, openCommunicationsChannel = function() {
                 if (!isOpen) if (isOpen = !0, window.addEventListener) window.addEventListener("message", communicationsHandler, !1); else {
@@ -882,7 +884,7 @@ function(module, exports, __webpack_require__) {
                 handleError: handleError
             };
         }, !0), filepicker.extend(function() {
-            var fp = this, VERSION = "2.4.16";
+            var fp = this, VERSION = "2.4.17";
             fp.API_VERSION = "v2";
             var setKey = function(key) {
                 fp.apikey = key;
@@ -1827,7 +1829,7 @@ function(module, exports, __webpack_require__) {
                 return "string" == typeof url && url.match("/api/file/");
             }, getFPUrl = function(url) {
                 if ("string" == typeof url) {
-                    var matched = url.match(/(?:cdn.filestackcontent.com|cdn.filepicker.io)[\S]*\/([\S]{20,})/);
+                    var matched = url.match(/(?:^https?:\/\/cdn.filestackcontent.com|^https?:\/\/cdn.filepicker.io)[\S]*\/([\S]{20,})/);
                     if (matched && matched.length > 1) return fp.urls.BASE + "/api/file/" + matched[1];
                 }
                 return url;

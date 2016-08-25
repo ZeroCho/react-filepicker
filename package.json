@@ -1,6 +1,6 @@
 {
   "name": "react-filepicker",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "main": "dist/react-filepicker.js",
   "description": "react component for filepicker(a.k.a filestack)",
   "scripts": {
@@ -56,7 +56,7 @@
     "webpack": "^1.13.2"
   },
   "peerDependencies": {
-    "react": "15.3.1",
-    "react-dom": "15.3.1"
+    "react": "15.x.x",
+    "react-dom": "15.x.x"
   }
 }
