@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/zerocho/react-filepicker#readme",
   "dependencies": {
-    "filepicker-js": "^2.4.16"
+    "filepicker-js": "^2.4.17"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
