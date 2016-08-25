@@ -111,9 +111,10 @@ function(module, exports, __webpack_require__) {
             for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
             return _temp = _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ReactFilepicker)).call.apply(_Object$getPrototypeO, [ this ].concat(args))), 
             _this.onClickPick = function(e) {
-                e.preventDefault(), e.stopPropagation();
-                var filepicker = __webpack_require__(3), _this$props = _this.props, apikey = _this$props.apikey, onSuccess = _this$props.onSuccess, onError = _this$props.onError, onProgress = _this$props.onProgress, options = _this$props.options, mode = _this$props.mode, blob = _this$props.blob, input = _this$props.input, onFinished = function(blob) {
-                    "function" == typeof onSuccess ? onSuccess(blob) : console.log(blob);
+                var filepicker = __webpack_require__(3);
+                e.stopPropagation(), e.preventDefault();
+                var _this$props = _this.props, apikey = _this$props.apikey, onSuccess = _this$props.onSuccess, onError = _this$props.onError, onProgress = _this$props.onProgress, options = _this$props.options, mode = _this$props.mode, blob = _this$props.blob, input = _this$props.input, onFinished = function(result) {
+                    "function" == typeof onSuccess ? onSuccess(result) : console.log(result);
                 }, onFail = function(error) {
                     "function" == typeof onError ? onError(error) : console.error(error);
                 }, onUploading = function(progress) {
@@ -125,10 +126,10 @@ function(module, exports, __webpack_require__) {
         return _inherits(ReactFilepicker, _Component), _createClass(ReactFilepicker, [ {
             key: "componentDidMount",
             value: function() {
-                var filepicker = __webpack_require__(3), _props = this.props, apikey = _props.apikey, buttonText = _props.buttonText, buttonClass = _props.buttonClass, onSuccess = _props.onSuccess, options = _props.options, mode = _props.mode, custom = this.refs.fpButton;
+                var filepicker = __webpack_require__(3), _props = this.props, apikey = _props.apikey, buttonText = _props.buttonText, buttonClass = _props.buttonClass, onSuccess = _props.onSuccess, options = _props.options, mode = _props.mode, custom = this.fpButton;
                 if (!custom) {
                     // if using default widget
-                    var element = this.refs.target;
+                    var element = this.target;
                     "dragdrop" === mode ? element.setAttribute("type", "filepicker-dragdrop") : "pickMultiple" === mode && (options.multiple = !0), 
                     (0, _options2["default"])(element, options, mode), element.setAttribute("data-fp-apikey", apikey), 
                     element.setAttribute("data-fp-button-text", buttonText || options.buttonText || "Pick File"), 
@@ -141,18 +142,21 @@ function(module, exports, __webpack_require__) {
         }, {
             key: "render",
             value: function() {
-                var _props2 = this.props, defaultWidget = _props2.defaultWidget, buttonClass = _props2.buttonClass, buttonText = _props2.buttonText, link = _props2.link, options = _props2.options;
+                var _this2 = this, _props2 = this.props, defaultWidget = _props2.defaultWidget, buttonClass = _props2.buttonClass, buttonText = _props2.buttonText, link = _props2.link, options = _props2.options;
                 if (defaultWidget) return _react2["default"].createElement("input", {
-                    ref: "target",
+                    ref: function(c) {
+                        _this2.target = c;
+                    },
                     type: "filepicker"
                 });
                 var Tag = link ? "a" : "button";
                 return _react2["default"].createElement(Tag, {
                     name: "filepicker",
-                    ref: "fpButton",
+                    ref: function(c) {
+                        _this2.fpButton = c;
+                    },
                     onClick: this.onClickPick,
-                    className: buttonClass || options.buttonClass,
-                    href: link ? "javascript:void(0)" : void 0
+                    className: buttonClass || options.buttonClass
                 }, buttonText || options.buttonText);
             }
         } ]), ReactFilepicker;
@@ -267,8 +271,8 @@ function(module, exports) {
 /***/
 function(module, exports) {
     "use strict";
-    function applyOptions(domElement, options, mode) {
-        var generalOptionsMap = {
+    function applyOptions(domElement, options) {
+        var mode = arguments.length <= 2 || void 0 === arguments[2] ? "pick" : arguments[2], generalOptionsMap = {
             "data-fp-container": "container",
             "data-fp-mimetype": "mimetype",
             "data-fp-extension": "extension",
@@ -310,14 +314,13 @@ function(module, exports) {
             "data-fp-video-length": "videoLen",
             "data-fp-audio-length": "audioLen"
         };
-        mode = mode || "pick", setAttrIfExistsArray(options, domElement, generalOptionsMap), 
-        "export" === mode ? setAttrIfExists("suggestedFilename", fpoptions, "data-fp-suggestedFilename", domElement) : "pick" !== mode && "pickMultiple" !== mode || (setAttrIfExistsArray(options, domElement, pickOnlyOptionsMap), 
+        setAttrIfExistsArray(options, domElement, generalOptionsMap), "export" === mode ? setAttrIfExists("suggestedFilename", options, "data-fp-suggestedFilename", domElement) : "pick" !== mode && "pickMultiple" !== mode || (setAttrIfExistsArray(options, domElement, pickOnlyOptionsMap), 
         setAttrIfExistsArray(options.webcam, domElement, webcamOptionsMap)), options.services && domElement.setAttribute("data-fp-services", options.services.join()), 
         options.service && domElement.setAttribute("data-fp-service", options.service);
         var arrayToJoin = [ "extensions", "mimetypes", "imageDim", "imageMin", "imageMax", "cropDim", "cropMax", "cropMin", "webcamDim", "conversions" ];
         for (var key in arrayToJoin) joinIfExist(arrayToJoin[key], options);
-        return 1 == options.folders && domElement.setAttribute("data-fp-folders", "true"), 
-        1 == options.multiple || "pickMultiple" === mode ? domElement.setAttribute("data-fp-multiple", "true") : domElement;
+        return options.folders === !0 && domElement.setAttribute("data-fp-folders", "true"), 
+        options.multiple === !0 || "pickMultiple" === mode ? domElement.setAttribute("data-fp-multiple", "true") : domElement;
     }
     function setAttrIfExists(key, options, attrname, dom) {
         options[key] && dom.setAttribute(attrname, options[key]);

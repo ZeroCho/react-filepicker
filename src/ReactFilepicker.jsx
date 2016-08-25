@@ -13,13 +13,13 @@ class ReactFilepicker extends Component {
       webcam: {
         videoRes: '640x480',
         audioLen: '3600',
-        vidioLen: '3600'
+        vidioLen: '3600',
       },
       backgroundUpload: true,
       hide: false,
       imageQuality: 100,
       cropForce: false,
-    }
+    },
   };
 
   static propTypes = {
@@ -109,10 +109,11 @@ class ReactFilepicker extends Component {
 
   componentDidMount() {
     const filepicker = require('filepicker-js');
+
     const { apikey, buttonText, buttonClass, onSuccess, options, mode } = this.props;
-    const custom = this.refs.fpButton;
+    const custom = this.fpButton;
     if (!custom) { // if using default widget
-      const element = this.refs.target;
+      const element = this.target;
       if (mode === 'dragdrop') {
         element.setAttribute('type', 'filepicker-dragdrop');
       } else if (mode === 'pickMultiple') {
@@ -122,7 +123,7 @@ class ReactFilepicker extends Component {
       element.setAttribute('data-fp-apikey', apikey);
       element.setAttribute('data-fp-button-text', buttonText || options.buttonText || 'Pick File');
       element.setAttribute('data-fp-button-class', buttonClass || options.buttonClass || 'fp__btn');
-      element.onchange = function (e) {
+      element.onchange = (e) => {
         if (typeof onSuccess === 'function') {
           onSuccess(e.fpfile);
         } else {
@@ -135,15 +136,16 @@ class ReactFilepicker extends Component {
   }
 
   onClickPick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
     const filepicker = require('filepicker-js');
+
+    e.stopPropagation();
+    e.preventDefault();
     const { apikey, onSuccess, onError, onProgress, options, mode, blob, input } = this.props;
-    const onFinished = (blob) => {
+    const onFinished = (result) => {
       if (typeof onSuccess === 'function') {
-        onSuccess(blob);
+        onSuccess(result);
       } else {
-        console.log(blob);
+        console.log(result);
       }
     };
     const onFail = (error) => {
@@ -190,17 +192,23 @@ class ReactFilepicker extends Component {
     const { defaultWidget, buttonClass, buttonText, link, options } = this.props;
     if (defaultWidget) {
       return (
-        <input ref="target" type="filepicker" />
-      )
+        <input
+          ref={(c) => {
+            this.target = c;
+          }}
+          type="filepicker"
+        />
+      );
     }
     const Tag = link ? 'a' : 'button';
     return (
       <Tag
         name="filepicker"
-        ref="fpButton"
+        ref={(c) => {
+          this.fpButton = c;
+        }}
         onClick={this.onClickPick}
         className={buttonClass || options.buttonClass}
-        href={link ? 'javascript:void(0)' : undefined}
       >
         {buttonText || options.buttonText}
       </Tag>

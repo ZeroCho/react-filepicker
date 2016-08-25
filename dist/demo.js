@@ -21272,9 +21272,10 @@
 	    }
 	
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ReactFilepicker)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.onClickPick = function (e) {
-	      e.preventDefault();
-	      e.stopPropagation();
 	      var filepicker = __webpack_require__(174);
+	
+	      e.stopPropagation();
+	      e.preventDefault();
 	      var _this$props = _this.props;
 	      var apikey = _this$props.apikey;
 	      var onSuccess = _this$props.onSuccess;
@@ -21285,11 +21286,11 @@
 	      var blob = _this$props.blob;
 	      var input = _this$props.input;
 	
-	      var onFinished = function onFinished(blob) {
+	      var onFinished = function onFinished(result) {
 	        if (typeof onSuccess === 'function') {
-	          onSuccess(blob);
+	          onSuccess(result);
 	        } else {
-	          console.log(blob);
+	          console.log(result);
 	        }
 	      };
 	      var onFail = function onFail(error) {
@@ -21337,6 +21338,7 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var filepicker = __webpack_require__(174);
+	
 	      var _props = this.props;
 	      var apikey = _props.apikey;
 	      var buttonText = _props.buttonText;
@@ -21345,10 +21347,10 @@
 	      var options = _props.options;
 	      var mode = _props.mode;
 	
-	      var custom = this.refs.fpButton;
+	      var custom = this.fpButton;
 	      if (!custom) {
 	        // if using default widget
-	        var element = this.refs.target;
+	        var element = this.target;
 	        if (mode === 'dragdrop') {
 	          element.setAttribute('type', 'filepicker-dragdrop');
 	        } else if (mode === 'pickMultiple') {
@@ -21372,6 +21374,8 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+	
 	      var _props2 = this.props;
 	      var defaultWidget = _props2.defaultWidget;
 	      var buttonClass = _props2.buttonClass;
@@ -21380,17 +21384,23 @@
 	      var options = _props2.options;
 	
 	      if (defaultWidget) {
-	        return _react2.default.createElement('input', { ref: 'target', type: 'filepicker' });
+	        return _react2.default.createElement('input', {
+	          ref: function ref(c) {
+	            _this2.target = c;
+	          },
+	          type: 'filepicker'
+	        });
 	      }
 	      var Tag = link ? 'a' : 'button';
 	      return _react2.default.createElement(
 	        Tag,
 	        {
 	          name: 'filepicker',
-	          ref: 'fpButton',
+	          ref: function ref(c) {
+	            _this2.fpButton = c;
+	          },
 	          onClick: this.onClickPick,
-	          className: buttonClass || options.buttonClass,
-	          href: link ? 'javascript:void(0)' : undefined
+	          className: buttonClass || options.buttonClass
 	        },
 	        buttonText || options.buttonText
 	      );
@@ -21509,62 +21519,63 @@
 /* 173 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.default = applyOptions;
-	function applyOptions(domElement, options, mode) {
+	function applyOptions(domElement, options) {
+	  var mode = arguments.length <= 2 || arguments[2] === undefined ? 'pick' : arguments[2];
+	
 	  var generalOptionsMap = {
-	    "data-fp-container": "container",
-	    "data-fp-mimetype": "mimetype",
-	    "data-fp-extension": "extension",
-	    "data-fp-openTo": "openTo",
-	    "data-fp-debug": "debug",
-	    "data-fp-signature": "signature",
-	    "data-fp-policy": "policy",
-	    "data-fp-language": "language",
-	    "data-fp-background-upload": "backgroundUpload",
-	    "data-fp-hide": "hide",
-	    "data-fp-custom-css": "customCss",
-	    "data-fp-crop-force": "cropForce",
-	    "data-fp-crop-ratio": "cropRatio",
-	    "data-fp-crop-dim": "cropDim",
-	    "data-fp-crop-max": "cropMax",
-	    "data-fp-crop-min": "cropMin",
-	    "data-fp-show-close": "showClose",
-	    "data-fp-conversions": "conversions",
-	    "data-fp-custom-text": "customText",
-	    "data-fp-custom-source-container": "customSourceContainer",
-	    "data-fp-custom-source-path": "customSourcePath"
-	  },
-	      pickOnlyOptionsMap = {
-	    "data-fp-mimetypes": "mimetypes",
-	    "data-fp-extensions": "extensions",
-	    "data-fp-maxSize": "maxSize",
-	    "data-fp-maxFiles": "maxFiles",
-	    "data-fp-store-location": "storeLocation",
-	    "data-fp-store-path": "storePath",
-	    "data-fp-store-container": "storeContainer",
-	    "data-fp-store-region": "storeRegion",
-	    "data-fp-store-access": "storeAccess",
-	    "data-fp-image-quality": "imageQuality",
-	    "data-fp-image-dim": "imageDim",
-	    "data-fp-image-max": "imageMax",
-	    "data-fp-image-min": "imageMin"
-	  },
-	      webcamOptionsMap = {
-	    "data-fp-video-recording-resolution": "videoRes",
-	    "data-fp-webcam-dim": "webcamDim",
-	    "data-fp-video-length": "videoLen",
-	    "data-fp-audio-length": "audioLen"
+	    'data-fp-container': 'container',
+	    'data-fp-mimetype': 'mimetype',
+	    'data-fp-extension': 'extension',
+	    'data-fp-openTo': 'openTo',
+	    'data-fp-debug': 'debug',
+	    'data-fp-signature': 'signature',
+	    'data-fp-policy': 'policy',
+	    'data-fp-language': 'language',
+	    'data-fp-background-upload': 'backgroundUpload',
+	    'data-fp-hide': 'hide',
+	    'data-fp-custom-css': 'customCss',
+	    'data-fp-crop-force': 'cropForce',
+	    'data-fp-crop-ratio': 'cropRatio',
+	    'data-fp-crop-dim': 'cropDim',
+	    'data-fp-crop-max': 'cropMax',
+	    'data-fp-crop-min': 'cropMin',
+	    'data-fp-show-close': 'showClose',
+	    'data-fp-conversions': 'conversions',
+	    'data-fp-custom-text': 'customText',
+	    'data-fp-custom-source-container': 'customSourceContainer',
+	    'data-fp-custom-source-path': 'customSourcePath'
 	  };
-	  mode = mode || "pick";
+	  var pickOnlyOptionsMap = {
+	    'data-fp-mimetypes': 'mimetypes',
+	    'data-fp-extensions': 'extensions',
+	    'data-fp-maxSize': 'maxSize',
+	    'data-fp-maxFiles': 'maxFiles',
+	    'data-fp-store-location': 'storeLocation',
+	    'data-fp-store-path': 'storePath',
+	    'data-fp-store-container': 'storeContainer',
+	    'data-fp-store-region': 'storeRegion',
+	    'data-fp-store-access': 'storeAccess',
+	    'data-fp-image-quality': 'imageQuality',
+	    'data-fp-image-dim': 'imageDim',
+	    'data-fp-image-max': 'imageMax',
+	    'data-fp-image-min': 'imageMin'
+	  };
+	  var webcamOptionsMap = {
+	    'data-fp-video-recording-resolution': 'videoRes',
+	    'data-fp-webcam-dim': 'webcamDim',
+	    'data-fp-video-length': 'videoLen',
+	    'data-fp-audio-length': 'audioLen'
+	  };
 	  setAttrIfExistsArray(options, domElement, generalOptionsMap);
-	  if (mode === "export") {
-	    setAttrIfExists("suggestedFilename", fpoptions, "data-fp-suggestedFilename", domElement);
-	  } else if (mode === "pick" || mode === 'pickMultiple') {
+	  if (mode === 'export') {
+	    setAttrIfExists('suggestedFilename', options, 'data-fp-suggestedFilename', domElement);
+	  } else if (mode === 'pick' || mode === 'pickMultiple') {
 	    setAttrIfExistsArray(options, domElement, pickOnlyOptionsMap);
 	    setAttrIfExistsArray(options.webcam, domElement, webcamOptionsMap);
 	  }
@@ -21574,14 +21585,14 @@
 	  if (options.service) {
 	    domElement.setAttribute('data-fp-service', options.service);
 	  }
-	  var arrayToJoin = ["extensions", "mimetypes", "imageDim", "imageMin", "imageMax", "cropDim", "cropMax", "cropMin", "webcamDim", "conversions"];
+	  var arrayToJoin = ['extensions', 'mimetypes', 'imageDim', 'imageMin', 'imageMax', 'cropDim', 'cropMax', 'cropMin', 'webcamDim', 'conversions'];
 	  for (var key in arrayToJoin) {
 	    joinIfExist(arrayToJoin[key], options);
 	  }
-	  if (options.folders == true) {
+	  if (options.folders === true) {
 	    domElement.setAttribute('data-fp-folders', 'true');
 	  }
-	  if (options.multiple == true || mode === 'pickMultiple') {
+	  if (options.multiple === true || mode === 'pickMultiple') {
 	    return domElement.setAttribute('data-fp-multiple', 'true');
 	  }
 	  return domElement;
