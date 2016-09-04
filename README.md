@@ -94,6 +94,9 @@ You can also see live demo here
 > ### input
 > **optional** object. use this for read, store, storeUrl or write mode.
 
+> ### log
+> **optional** object. **default** false. choose whether to console.log filepicker process
+
 > ### onSuccess
 > **optional** function. get result(fpfiles or blob object) after upload is done.
 

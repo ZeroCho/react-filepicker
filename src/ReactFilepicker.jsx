@@ -5,6 +5,7 @@ class ReactFilepicker extends Component {
   static defaultProps = {
     defaultWidget: true,
     mode: 'pick',
+    log: false,
     options: {
       folders: false,
       buttonText: 'Pick File',
@@ -33,6 +34,7 @@ class ReactFilepicker extends Component {
     buttonClass: PropTypes.string,
     onSuccess: PropTypes.func,
     onError: PropTypes.func,
+    log: PropTypes.bool,
     onProgress: PropTypes.func,
     options: PropTypes.shape({
       url: PropTypes.string,
@@ -110,7 +112,7 @@ class ReactFilepicker extends Component {
   componentDidMount() {
     const filepicker = require('filepicker-js');
 
-    const { apikey, buttonText, buttonClass, onSuccess, options, mode } = this.props;
+    const { apikey, buttonText, buttonClass, onSuccess, options, mode, log } = this.props;
     const custom = this.fpButton;
     if (!custom) { // if using default widget
       const element = this.target;
@@ -126,7 +128,7 @@ class ReactFilepicker extends Component {
       element.onchange = (e) => {
         if (typeof onSuccess === 'function') {
           onSuccess(e.fpfile);
-        } else {
+        } else if (log) {
           console.log(e.fpfile);
         }
       };
@@ -140,25 +142,25 @@ class ReactFilepicker extends Component {
 
     e.stopPropagation();
     e.preventDefault();
-    const { apikey, onSuccess, onError, onProgress, options, mode, blob, input } = this.props;
+    const { apikey, onSuccess, onError, onProgress, options, mode, blob, input, log } = this.props;
     const onFinished = (result) => {
       if (typeof onSuccess === 'function') {
         onSuccess(result);
-      } else {
+      } else if (log) {
         console.log(result);
       }
     };
     const onFail = (error) => {
       if (typeof onError === 'function') {
         onError(error);
-      } else {
+      } else if (log) {
         console.error(error);
       }
     };
     const onUploading = (progress) => {
       if (typeof onProgress === 'function') {
         onProgress(progress);
-      } else {
+      } else if (log) {
         console.log(progress);
       }
     };

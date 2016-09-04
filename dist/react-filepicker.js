@@ -113,12 +113,12 @@ function(module, exports, __webpack_require__) {
             _this.onClickPick = function(e) {
                 var filepicker = __webpack_require__(3);
                 e.stopPropagation(), e.preventDefault();
-                var _this$props = _this.props, apikey = _this$props.apikey, onSuccess = _this$props.onSuccess, onError = _this$props.onError, onProgress = _this$props.onProgress, options = _this$props.options, mode = _this$props.mode, blob = _this$props.blob, input = _this$props.input, onFinished = function(result) {
-                    "function" == typeof onSuccess ? onSuccess(result) : console.log(result);
+                var _this$props = _this.props, apikey = _this$props.apikey, onSuccess = _this$props.onSuccess, onError = _this$props.onError, onProgress = _this$props.onProgress, options = _this$props.options, mode = _this$props.mode, blob = _this$props.blob, input = _this$props.input, log = _this$props.log, onFinished = function(result) {
+                    "function" == typeof onSuccess ? onSuccess(result) : log && console.log(result);
                 }, onFail = function(error) {
-                    "function" == typeof onError ? onError(error) : console.error(error);
+                    "function" == typeof onError ? onError(error) : log && console.error(error);
                 }, onUploading = function(progress) {
-                    "function" == typeof onProgress ? onProgress(progress) : console.log(progress);
+                    "function" == typeof onProgress ? onProgress(progress) : log && console.log(progress);
                 };
                 filepicker.setKey(apikey), "export" === mode ? filepicker.exportFile(blob || options.url, options, onFinished, onFail, onUploading) : "convert" === mode ? filepicker.convert(blob, options, options, onFinished, onFail, onUploading) : "pickAndStore" === mode ? filepicker.pickAndStore(options, options, onFinished, onFail, onUploading) : "pickMultiple" === mode || options.multiple ? filepicker.pickMultiple(options, onFinished, onFail, onUploading) : "read" === mode ? filepicker.read(input || options.url, options, onFinished, onError, onUploading) : "store" === mode ? filepicker.store(input, options, onFinished, onError, onUploading) : "storeUrl" === mode ? filepicker.storeUrl(options.url, options, onFinished, onError, onUploading) : "stat" === mode ? filepicker.stat(blob, options, onFinished, onError) : "write" === mode ? filepicker.write(blob, input, options, onFinished, onError, onUploading) : "writeUrl" === mode ? filepicker.writeUrl(blob, options.url, options, onFinished, onError, onUploading) : filepicker.pick(options, onFinished, onFail, onUploading);
             }, _ret = _temp, _possibleConstructorReturn(_this, _ret);
@@ -126,7 +126,7 @@ function(module, exports, __webpack_require__) {
         return _inherits(ReactFilepicker, _Component), _createClass(ReactFilepicker, [ {
             key: "componentDidMount",
             value: function() {
-                var filepicker = __webpack_require__(3), _props = this.props, apikey = _props.apikey, buttonText = _props.buttonText, buttonClass = _props.buttonClass, onSuccess = _props.onSuccess, options = _props.options, mode = _props.mode, custom = this.fpButton;
+                var filepicker = __webpack_require__(3), _props = this.props, apikey = _props.apikey, buttonText = _props.buttonText, buttonClass = _props.buttonClass, onSuccess = _props.onSuccess, options = _props.options, mode = _props.mode, log = _props.log, custom = this.fpButton;
                 if (!custom) {
                     // if using default widget
                     var element = this.target;
@@ -135,7 +135,7 @@ function(module, exports, __webpack_require__) {
                     element.setAttribute("data-fp-button-text", buttonText || options.buttonText || "Pick File"), 
                     element.setAttribute("data-fp-button-class", buttonClass || options.buttonClass || "fp__btn"), 
                     element.onchange = function(e) {
-                        "function" == typeof onSuccess ? onSuccess(e.fpfile) : console.log(e.fpfile);
+                        "function" == typeof onSuccess ? onSuccess(e.fpfile) : log && console.log(e.fpfile);
                     }, filepicker.constructWidget(element), element.setAttribute("type", "");
                 }
             }
@@ -164,6 +164,7 @@ function(module, exports, __webpack_require__) {
     ReactFilepicker.defaultProps = {
         defaultWidget: !0,
         mode: "pick",
+        log: !1,
         options: {
             folders: !1,
             buttonText: "Pick File",
@@ -190,6 +191,7 @@ function(module, exports, __webpack_require__) {
         buttonClass: _react.PropTypes.string,
         onSuccess: _react.PropTypes.func,
         onError: _react.PropTypes.func,
+        log: _react.PropTypes.bool,
         onProgress: _react.PropTypes.func,
         options: _react.PropTypes.shape({
             url: _react.PropTypes.string,

@@ -21604,26 +21604,33 @@
 	      var mode = _this$props.mode;
 	      var blob = _this$props.blob;
 	      var input = _this$props.input;
+	      var log = _this$props.log;
 	
 	      var onFinished = function onFinished(result) {
 	        if (typeof onSuccess === 'function') {
 	          onSuccess(result);
 	        } else {
-	          console.log(result);
+	          if (log) {
+	            console.log(result);
+	          }
 	        }
 	      };
 	      var onFail = function onFail(error) {
 	        if (typeof onError === 'function') {
 	          onError(error);
 	        } else {
-	          console.error(error);
+	          if (log) {
+	            console.error(error);
+	          }
 	        }
 	      };
 	      var onUploading = function onUploading(progress) {
 	        if (typeof onProgress === 'function') {
 	          onProgress(progress);
 	        } else {
-	          console.log(progress);
+	          if (log) {
+	            console.log(progress);
+	          }
 	        }
 	      };
 	      filepicker.setKey(apikey);
@@ -21665,6 +21672,7 @@
 	      var onSuccess = _props.onSuccess;
 	      var options = _props.options;
 	      var mode = _props.mode;
+	      var log = _props.log;
 	
 	      var custom = this.fpButton;
 	      if (!custom) {
@@ -21683,7 +21691,9 @@
 	          if (typeof onSuccess === 'function') {
 	            onSuccess(e.fpfile);
 	          } else {
-	            console.log(e.fpfile);
+	            if (log) {
+	              console.log(e.fpfile);
+	            }
 	          }
 	        };
 	        filepicker.constructWidget(element);
@@ -21732,6 +21742,7 @@
 	ReactFilepicker.defaultProps = {
 	  defaultWidget: true,
 	  mode: 'pick',
+	  log: false,
 	  options: {
 	    folders: false,
 	    buttonText: 'Pick File',
@@ -21759,6 +21770,7 @@
 	  buttonClass: _react.PropTypes.string,
 	  onSuccess: _react.PropTypes.func,
 	  onError: _react.PropTypes.func,
+	  log: _react.PropTypes.bool,
 	  onProgress: _react.PropTypes.func,
 	  options: _react.PropTypes.shape({
 	    url: _react.PropTypes.string,
