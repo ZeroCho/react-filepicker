@@ -48,6 +48,7 @@ export default function applyOptions(domElement, options, mode = 'pick') {
     setAttrIfExists('suggestedFilename', options, 'data-fp-suggestedFilename', domElement);
   } else if (mode === 'pick' || mode === 'pickMultiple') {
     setAttrIfExistsArray(options, domElement, pickOnlyOptionsMap);
+    options.webcam = {};
     setAttrIfExistsArray(options.webcam, domElement, webcamOptionsMap);
   }
   if (options.services) {

@@ -317,7 +317,8 @@ function(module, exports) {
             "data-fp-audio-length": "audioLen"
         };
         setAttrIfExistsArray(options, domElement, generalOptionsMap), "export" === mode ? setAttrIfExists("suggestedFilename", options, "data-fp-suggestedFilename", domElement) : "pick" !== mode && "pickMultiple" !== mode || (setAttrIfExistsArray(options, domElement, pickOnlyOptionsMap), 
-        setAttrIfExistsArray(options.webcam, domElement, webcamOptionsMap)), options.services && domElement.setAttribute("data-fp-services", options.services.join()), 
+        options.webcam = {}, setAttrIfExistsArray(options.webcam, domElement, webcamOptionsMap)), 
+        options.services && domElement.setAttribute("data-fp-services", options.services.join()), 
         options.service && domElement.setAttribute("data-fp-service", options.service);
         var arrayToJoin = [ "extensions", "mimetypes", "imageDim", "imageMin", "imageMax", "cropDim", "cropMax", "cropMin", "webcamDim", "conversions" ];
         for (var key in arrayToJoin) joinIfExist(arrayToJoin[key], options);

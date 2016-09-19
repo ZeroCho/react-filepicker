@@ -21609,28 +21609,22 @@
 	      var onFinished = function onFinished(result) {
 	        if (typeof onSuccess === 'function') {
 	          onSuccess(result);
-	        } else {
-	          if (log) {
-	            console.log(result);
-	          }
+	        } else if (log) {
+	          console.log(result);
 	        }
 	      };
 	      var onFail = function onFail(error) {
 	        if (typeof onError === 'function') {
 	          onError(error);
-	        } else {
-	          if (log) {
-	            console.error(error);
-	          }
+	        } else if (log) {
+	          console.error(error);
 	        }
 	      };
 	      var onUploading = function onUploading(progress) {
 	        if (typeof onProgress === 'function') {
 	          onProgress(progress);
-	        } else {
-	          if (log) {
-	            console.log(progress);
-	          }
+	        } else if (log) {
+	          console.log(progress);
 	        }
 	      };
 	      filepicker.setKey(apikey);
@@ -21690,10 +21684,8 @@
 	        element.onchange = function (e) {
 	          if (typeof onSuccess === 'function') {
 	            onSuccess(e.fpfile);
-	          } else {
-	            if (log) {
-	              console.log(e.fpfile);
-	            }
+	          } else if (log) {
+	            console.log(e.fpfile);
 	          }
 	        };
 	        filepicker.constructWidget(element);
@@ -21908,6 +21900,7 @@
 	    setAttrIfExists('suggestedFilename', options, 'data-fp-suggestedFilename', domElement);
 	  } else if (mode === 'pick' || mode === 'pickMultiple') {
 	    setAttrIfExistsArray(options, domElement, pickOnlyOptionsMap);
+	    options.webcam = {};
 	    setAttrIfExistsArray(options.webcam, domElement, webcamOptionsMap);
 	  }
 	  if (options.services) {
