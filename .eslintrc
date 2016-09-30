@@ -13,6 +13,7 @@
   },
   "rules": {
     "linebreak-style": ["error", "windows"],
+    "import/no-unresolved": 0,
     "global-require": 0,
     "no-console": 0,
     "max-len": 0,

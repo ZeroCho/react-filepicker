@@ -117,6 +117,10 @@ You can also see live demo here
 
 ## Wanna Contribute?
 Please contribute to this package via **Pull Request**, or you can open **Issues**!
+```
+npm install && npm run build
+run index.html
+```
 
 ## Contributors
 - Zero Cho

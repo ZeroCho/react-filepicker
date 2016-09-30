@@ -1,3 +1,21 @@
+function setAttrIfExists(key, options, attrname, dom) {
+  if (options[key]) {
+    dom.setAttribute(attrname, options[key]);
+  }
+}
+
+function setAttrIfExistsArray(fpoptions, domElement, optionsObj) {
+  Object.keys(optionsObj).forEach((option) => {
+    setAttrIfExists(optionsObj[option], fpoptions, option, domElement);
+  });
+}
+
+function joinIfExist(key, options) {
+  if (options[key]) {
+    options[key] = options[key].join();
+  }
+}
+
 export default function applyOptions(domElement, options, mode = 'pick') {
   const generalOptionsMap = {
     'data-fp-container': 'container',
@@ -58,9 +76,9 @@ export default function applyOptions(domElement, options, mode = 'pick') {
     domElement.setAttribute('data-fp-service', options.service);
   }
   const arrayToJoin = ['extensions', 'mimetypes', 'imageDim', 'imageMin', 'imageMax', 'cropDim', 'cropMax', 'cropMin', 'webcamDim', 'conversions'];
-  for (const key in arrayToJoin) {
+  Object.keys(arrayToJoin).forEach((key) => {
     joinIfExist(arrayToJoin[key], options);
-  }
+  });
   if (options.folders === true) {
     domElement.setAttribute('data-fp-folders', 'true');
   }
@@ -68,22 +86,4 @@ export default function applyOptions(domElement, options, mode = 'pick') {
     return domElement.setAttribute('data-fp-multiple', 'true');
   }
   return domElement;
-}
-
-function setAttrIfExists(key, options, attrname, dom) {
-  if (options[key]) {
-    dom.setAttribute(attrname, options[key]);
-  }
-}
-
-function setAttrIfExistsArray(fpoptions, domElement, optionsObj) {
-  for (const option in optionsObj) {
-    setAttrIfExists(optionsObj[option], fpoptions, option, domElement);
-  }
-}
-
-function joinIfExist(key, options) {
-  if (options[key]) {
-    options[key] = options[key].join();
-  }
 }

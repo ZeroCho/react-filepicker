@@ -273,8 +273,19 @@ function(module, exports) {
 /***/
 function(module, exports) {
     "use strict";
+    function setAttrIfExists(key, options, attrname, dom) {
+        options[key] && dom.setAttribute(attrname, options[key]);
+    }
+    function setAttrIfExistsArray(fpoptions, domElement, optionsObj) {
+        Object.keys(optionsObj).forEach(function(option) {
+            setAttrIfExists(optionsObj[option], fpoptions, option, domElement);
+        });
+    }
+    function joinIfExist(key, options) {
+        options[key] && (options[key] = options[key].join());
+    }
     function applyOptions(domElement, options) {
-        var mode = arguments.length <= 2 || void 0 === arguments[2] ? "pick" : arguments[2], generalOptionsMap = {
+        var mode = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "pick", generalOptionsMap = {
             "data-fp-container": "container",
             "data-fp-mimetype": "mimetype",
             "data-fp-extension": "extension",
@@ -321,18 +332,10 @@ function(module, exports) {
         options.services && domElement.setAttribute("data-fp-services", options.services.join()), 
         options.service && domElement.setAttribute("data-fp-service", options.service);
         var arrayToJoin = [ "extensions", "mimetypes", "imageDim", "imageMin", "imageMax", "cropDim", "cropMax", "cropMin", "webcamDim", "conversions" ];
-        for (var key in arrayToJoin) joinIfExist(arrayToJoin[key], options);
-        return options.folders === !0 && domElement.setAttribute("data-fp-folders", "true"), 
+        return Object.keys(arrayToJoin).forEach(function(key) {
+            joinIfExist(arrayToJoin[key], options);
+        }), options.folders === !0 && domElement.setAttribute("data-fp-folders", "true"), 
         options.multiple === !0 || "pickMultiple" === mode ? domElement.setAttribute("data-fp-multiple", "true") : domElement;
-    }
-    function setAttrIfExists(key, options, attrname, dom) {
-        options[key] && dom.setAttribute(attrname, options[key]);
-    }
-    function setAttrIfExistsArray(fpoptions, domElement, optionsObj) {
-        for (var option in optionsObj) setAttrIfExists(optionsObj[option], fpoptions, option, domElement);
-    }
-    function joinIfExist(key, options) {
-        options[key] && (options[key] = options[key].join());
     }
     Object.defineProperty(exports, "__esModule", {
         value: !0
