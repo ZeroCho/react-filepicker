@@ -6,7 +6,7 @@ var loaders = [
   {
     test: /\.css/,
     loaders: [
-      'style?sourcemap', 'css/locals?modules&importLoaders=1',
+      'style?sourcemap', 'css?modules&importLoaders=1',
     ],
   },
 ];

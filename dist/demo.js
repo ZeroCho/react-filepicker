@@ -22050,9 +22050,11 @@
 	        }
 	        try {
 	            var data = fp.json.parse(event.data);
-	            fp.handlers.run(data);
 	        } catch (err) {
 	            console.log("[Filepicker] Failed processing message:", event.data);
+	        }
+	        if (data) {
+	            fp.handlers.run(data);
 	        }
 	    };
 	    var isOpen = false;
@@ -22992,7 +22994,7 @@
 	"use strict";
 	
 	filepicker.extend(function() {
-	    var fp = this, VERSION = "2.4.17";
+	    var fp = this, VERSION = "2.4.18";
 	    fp.API_VERSION = "v2";
 	    var setKey = function(key) {
 	        fp.apikey = key;
@@ -25870,14 +25872,14 @@
 	var content = __webpack_require__(177);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(178)(content, {"sourcemap":true});
+	var update = __webpack_require__(179)(content, {"sourcemap":true});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/locals.js?modules&importLoaders=1!./demo.css", function() {
-				var newContent = require("!!./../node_modules/css-loader/locals.js?modules&importLoaders=1!./demo.css");
+			module.hot.accept("!!./../node_modules/css-loader/index.js?modules&importLoaders=1!./demo.css", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js?modules&importLoaders=1!./demo.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -25888,14 +25890,78 @@
 
 /***/ },
 /* 177 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = {
+	exports = module.exports = __webpack_require__(178)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".gQ_agMoq7RkHEnELUsf1F {\r\n  background: white;\r\n  border: 1px solid black;\r\n  cursor: pointer;\r\n  border-radius:3px;\r\n}", ""]);
+	
+	// exports
+	exports.locals = {
 		"customButton": "gQ_agMoq7RkHEnELUsf1F"
 	};
 
 /***/ },
 /* 178 */
+/***/ function(module, exports) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function() {
+		var list = [];
+	
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for(var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if(item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+	
+		// import a list of modules into the list
+		list.i = function(modules, mediaQuery) {
+			if(typeof modules === "string")
+				modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for(var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if(typeof id === "number")
+					alreadyImportedModules[id] = true;
+			}
+			for(i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if(mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if(mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+
+/***/ },
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*

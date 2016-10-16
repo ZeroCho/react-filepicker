@@ -1,6 +1,6 @@
 {
   "name": "react-filepicker",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "main": "dist/react-filepicker.js",
   "description": "react component for filepicker(a.k.a filestack)",
   "scripts": {
@@ -32,7 +32,11 @@
   },
   "homepage": "https://github.com/zerocho/react-filepicker#readme",
   "dependencies": {
-    "filepicker-js": "^2.4.17"
+    "babel-core": "^6.17.0",
+    "eslint": "^3.8.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1",
+    "filepicker-js": "^2.4.18"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",

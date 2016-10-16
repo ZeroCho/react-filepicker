@@ -394,11 +394,13 @@ function(module, exports, __webpack_require__) {
                     apiIFrame.src = fp.urls.API_COMM, apiIFrame.style.display = "none", document.body.appendChild(apiIFrame);
                 }
             }, communicationsHandler = function(event) {
-                if (event.origin === fp.urls.BASE || event.origin === fp.urls.DIALOG_BASE) try {
-                    var data = fp.json.parse(event.data);
-                    fp.handlers.run(data);
-                } catch (err) {
-                    console.log("[Filepicker] Failed processing message:", event.data);
+                if (event.origin === fp.urls.BASE || event.origin === fp.urls.DIALOG_BASE) {
+                    try {
+                        var data = fp.json.parse(event.data);
+                    } catch (err) {
+                        console.log("[Filepicker] Failed processing message:", event.data);
+                    }
+                    data && fp.handlers.run(data);
                 }
             }, isOpen = !1, openCommunicationsChannel = function() {
                 if (!isOpen) if (isOpen = !0, window.addEventListener) window.addEventListener("message", communicationsHandler, !1); else {
@@ -890,7 +892,7 @@ function(module, exports, __webpack_require__) {
                 handleError: handleError
             };
         }, !0), filepicker.extend(function() {
-            var fp = this, VERSION = "2.4.17";
+            var fp = this, VERSION = "2.4.18";
             fp.API_VERSION = "v2";
             var setKey = function(key) {
                 fp.apikey = key;
