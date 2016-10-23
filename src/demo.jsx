@@ -56,30 +56,42 @@ document.addEventListener('DOMContentLoaded', () => {
         <div>DefaultWidget</div>
         <ReactFilepicker apikey={apikey} />
       </form>
+      <hr/>
       <form>
         <div>Drag&Drop Widget with custom options and Callback</div>
         <ReactFilepicker apikey={apikey} mode="dragdrop" options={dragDropOptions} onSuccess={callback} />
       </form>
+      <hr/>
       <form>
         <div>Custom button(You can put className on the button to style)</div>
         <ReactFilepicker apikey={apikey} defaultWidget={false} onSuccess={callback} />
       </form>
+      <hr/>
       <form>
         <div>Custom link(You can put className on the link to style)</div>
         <ReactFilepicker apikey={apikey} link defaultWidget={false} onSuccess={callback} />
       </form>
+      <hr/>
+      <form>
+        <div>Multiple files updaload</div>
+        <ReactFilepicker apikey={apikey} mode="pickMultiple" onSuccess={callback} />
+      </form>
+      <hr/>
       <form>
         <div>Custom button with custom options and custom styles</div>
         <ReactFilepicker apikey={apikey} defaultWidget={false} options={customOptions} onSuccess={callback} />
       </form>
+      <hr/>
       <form>
         <div>PickAndStore button</div>
         <ReactFilepicker apikey={apikey} mode="pickAndStore" defaultWidget={false} options={pickAndStoreOptions} onSuccess={callback} />
       </form>
+      <hr/>
       <form>
         <div>Export button</div>
         <ReactFilepicker apikey={apikey} mode="export" defaultWidget={false} options={exportOptions} onSuccess={callback} />
       </form>
+      <hr/>
       <form>
         <div>Convert button</div>
         <ReactFilepicker apikey={apikey} mode="convert" defaultWidget={false} blob={blob} options={convertOptions} onSuccess={callback} buttonText="Convert!" />
