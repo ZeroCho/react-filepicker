@@ -127,7 +127,7 @@ class ReactFilepicker extends Component {
       element.setAttribute('data-fp-button-class', buttonClass || options.buttonClass || 'fp__btn');
       element.onchange = (e) => {
         if (typeof onSuccess === 'function') {
-          onSuccess(e.fpfile);
+          onSuccess(e.fpfiles.length === 1 ? e.fpfile : e.fpfiles);
         } else if (log) {
           console.log(e.fpfile);
         }

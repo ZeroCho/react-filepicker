@@ -135,7 +135,7 @@ function(module, exports, __webpack_require__) {
                     element.setAttribute("data-fp-button-text", buttonText || options.buttonText || "Pick File"), 
                     element.setAttribute("data-fp-button-class", buttonClass || options.buttonClass || "fp__btn"), 
                     element.onchange = function(e) {
-                        "function" == typeof onSuccess ? onSuccess(e.fpfile) : log && console.log(e.fpfile);
+                        "function" == typeof onSuccess ? onSuccess(1 === e.fpfiles.length ? e.fpfile : e.fpfiles) : log && console.log(e.fpfile);
                     }, filepicker.constructWidget(element), element.setAttribute("type", "");
                 }
             }
