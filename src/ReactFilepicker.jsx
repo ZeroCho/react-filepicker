@@ -24,8 +24,8 @@ class ReactFilepicker extends Component {
   };
 
   static propTypes = {
-    blob: PropTypes.object,
-    input: PropTypes.any,
+    blob: PropTypes.objectOf(PropTypes.any),
+    input: PropTypes.objectOf(PropTypes.any),
     apikey: PropTypes.string.isRequired,
     defaultWidget: PropTypes.bool,
     link: PropTypes.bool,

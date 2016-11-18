@@ -74,17 +74,37 @@ document.addEventListener('DOMContentLoaded', () => {
       </form>
       <form>
         <div>PickAndStore button</div>
-        <ReactFilepicker apikey={apikey} mode="pickAndStore" defaultWidget={false} options={pickAndStoreOptions} onSuccess={callback} />
+        <ReactFilepicker
+          apikey={apikey}
+          mode="pickAndStore"
+          defaultWidget={false}
+          options={pickAndStoreOptions}
+          onSuccess={callback}
+        />
       </form>
       <form>
         <div>Export button</div>
-        <ReactFilepicker apikey={apikey} mode="export" defaultWidget={false} options={exportOptions} onSuccess={callback} />
+        <ReactFilepicker
+          apikey={apikey}
+          mode="export"
+          defaultWidget={false}
+          options={exportOptions}
+          onSuccess={callback}
+        />
       </form>
       <form>
         <div>Convert button</div>
-        <ReactFilepicker apikey={apikey} mode="convert" defaultWidget={false} blob={blob} options={convertOptions} onSuccess={callback} buttonText="Convert!" />
+        <ReactFilepicker
+          apikey={apikey}
+          mode="convert"
+          defaultWidget={false}
+          blob={blob}
+          options={convertOptions}
+          onSuccess={callback}
+          buttonText="Convert!"
+        />
       </form>
     </div>,
-    rootNode
+    rootNode,
   );
 });

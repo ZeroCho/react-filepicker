@@ -68,7 +68,7 @@ function(module, exports, __webpack_require__) {
     "use strict";
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
-            "default": obj
+            default: obj
         };
     }
     function _classCallCheck(instance, Constructor) {
@@ -131,7 +131,7 @@ function(module, exports, __webpack_require__) {
                     // if using default widget
                     var element = this.target;
                     "dragdrop" === mode ? element.setAttribute("type", "filepicker-dragdrop") : "pickMultiple" === mode && (options.multiple = !0), 
-                    (0, _options2["default"])(element, options, mode), element.setAttribute("data-fp-apikey", apikey), 
+                    (0, _options2.default)(element, options, mode), element.setAttribute("data-fp-apikey", apikey), 
                     element.setAttribute("data-fp-button-text", buttonText || options.buttonText || "Pick File"), 
                     element.setAttribute("data-fp-button-class", buttonClass || options.buttonClass || "fp__btn"), 
                     element.onchange = function(e) {
@@ -143,14 +143,14 @@ function(module, exports, __webpack_require__) {
             key: "render",
             value: function() {
                 var _this2 = this, _props2 = this.props, defaultWidget = _props2.defaultWidget, buttonClass = _props2.buttonClass, buttonText = _props2.buttonText, link = _props2.link, options = _props2.options;
-                if (defaultWidget) return _react2["default"].createElement("input", {
+                if (defaultWidget) return _react2.default.createElement("input", {
                     ref: function(c) {
                         _this2.target = c;
                     },
                     type: "filepicker"
                 });
                 var Tag = link ? "a" : "button";
-                return _react2["default"].createElement(Tag, {
+                return _react2.default.createElement(Tag, {
                     name: "filepicker",
                     ref: function(c) {
                         _this2.fpButton = c;
@@ -181,8 +181,8 @@ function(module, exports, __webpack_require__) {
             cropForce: !1
         }
     }, ReactFilepicker.propTypes = {
-        blob: _react.PropTypes.object,
-        input: _react.PropTypes.any,
+        blob: _react.PropTypes.objectOf(_react.PropTypes.any),
+        input: _react.PropTypes.objectOf(_react.PropTypes.any),
         apikey: _react.PropTypes.string.isRequired,
         defaultWidget: _react.PropTypes.bool,
         link: _react.PropTypes.bool,
@@ -264,7 +264,7 @@ function(module, exports, __webpack_require__) {
             writeable: _react.PropTypes.bool,
             md5: _react.PropTypes.bool
         })
-    }, exports["default"] = ReactFilepicker;
+    }, exports.default = ReactFilepicker;
 }, /* 1 */
 /***/
 function(module, exports) {
@@ -339,7 +339,7 @@ function(module, exports) {
     }
     Object.defineProperty(exports, "__esModule", {
         value: !0
-    }), exports["default"] = applyOptions;
+    }), exports.default = applyOptions;
 }, /* 3 */
 /***/
 function(module, exports, __webpack_require__) {
@@ -1069,7 +1069,7 @@ function(module, exports, __webpack_require__) {
                 read: read,
                 write: write,
                 writeUrl: writeUrl,
-                "export": exportFn,
+                export: exportFn,
                 exportFile: exportFn,
                 processImage: processImage,
                 store: store,

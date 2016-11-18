@@ -172,7 +172,13 @@
 	        null,
 	        'PickAndStore button'
 	      ),
-	      _react2.default.createElement(_ReactFilepicker2.default, { apikey: apikey, mode: 'pickAndStore', defaultWidget: false, options: pickAndStoreOptions, onSuccess: callback })
+	      _react2.default.createElement(_ReactFilepicker2.default, {
+	        apikey: apikey,
+	        mode: 'pickAndStore',
+	        defaultWidget: false,
+	        options: pickAndStoreOptions,
+	        onSuccess: callback
+	      })
 	    ),
 	    _react2.default.createElement(
 	      'form',
@@ -182,7 +188,13 @@
 	        null,
 	        'Export button'
 	      ),
-	      _react2.default.createElement(_ReactFilepicker2.default, { apikey: apikey, mode: 'export', defaultWidget: false, options: exportOptions, onSuccess: callback })
+	      _react2.default.createElement(_ReactFilepicker2.default, {
+	        apikey: apikey,
+	        mode: 'export',
+	        defaultWidget: false,
+	        options: exportOptions,
+	        onSuccess: callback
+	      })
 	    ),
 	    _react2.default.createElement(
 	      'form',
@@ -192,7 +204,15 @@
 	        null,
 	        'Convert button'
 	      ),
-	      _react2.default.createElement(_ReactFilepicker2.default, { apikey: apikey, mode: 'convert', defaultWidget: false, blob: blob, options: convertOptions, onSuccess: callback, buttonText: 'Convert!' })
+	      _react2.default.createElement(_ReactFilepicker2.default, {
+	        apikey: apikey,
+	        mode: 'convert',
+	        defaultWidget: false,
+	        blob: blob,
+	        options: convertOptions,
+	        onSuccess: callback,
+	        buttonText: 'Convert!'
+	      })
 	    )
 	  ), rootNode);
 	});
@@ -316,25 +336,40 @@
 	var cachedSetTimeout;
 	var cachedClearTimeout;
 	
+	function defaultSetTimout() {
+	    throw new Error('setTimeout has not been defined');
+	}
+	function defaultClearTimeout () {
+	    throw new Error('clearTimeout has not been defined');
+	}
 	(function () {
 	    try {
-	        cachedSetTimeout = setTimeout;
-	    } catch (e) {
-	        cachedSetTimeout = function () {
-	            throw new Error('setTimeout is not defined');
+	        if (typeof setTimeout === 'function') {
+	            cachedSetTimeout = setTimeout;
+	        } else {
+	            cachedSetTimeout = defaultSetTimout;
 	        }
+	    } catch (e) {
+	        cachedSetTimeout = defaultSetTimout;
 	    }
 	    try {
-	        cachedClearTimeout = clearTimeout;
-	    } catch (e) {
-	        cachedClearTimeout = function () {
-	            throw new Error('clearTimeout is not defined');
+	        if (typeof clearTimeout === 'function') {
+	            cachedClearTimeout = clearTimeout;
+	        } else {
+	            cachedClearTimeout = defaultClearTimeout;
 	        }
+	    } catch (e) {
+	        cachedClearTimeout = defaultClearTimeout;
 	    }
 	} ())
 	function runTimeout(fun) {
 	    if (cachedSetTimeout === setTimeout) {
 	        //normal enviroments in sane situations
+	        return setTimeout(fun, 0);
+	    }
+	    // if setTimeout wasn't available but was latter defined
+	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+	        cachedSetTimeout = setTimeout;
 	        return setTimeout(fun, 0);
 	    }
 	    try {
@@ -355,6 +390,11 @@
 	function runClearTimeout(marker) {
 	    if (cachedClearTimeout === clearTimeout) {
 	        //normal enviroments in sane situations
+	        return clearTimeout(marker);
+	    }
+	    // if clearTimeout wasn't available but was latter defined
+	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+	        cachedClearTimeout = clearTimeout;
 	        return clearTimeout(marker);
 	    }
 	    try {
@@ -21595,16 +21635,16 @@
 	
 	      e.stopPropagation();
 	      e.preventDefault();
-	      var _this$props = _this.props;
-	      var apikey = _this$props.apikey;
-	      var onSuccess = _this$props.onSuccess;
-	      var onError = _this$props.onError;
-	      var onProgress = _this$props.onProgress;
-	      var options = _this$props.options;
-	      var mode = _this$props.mode;
-	      var blob = _this$props.blob;
-	      var input = _this$props.input;
-	      var log = _this$props.log;
+	      var _this$props = _this.props,
+	          apikey = _this$props.apikey,
+	          onSuccess = _this$props.onSuccess,
+	          onError = _this$props.onError,
+	          onProgress = _this$props.onProgress,
+	          options = _this$props.options,
+	          mode = _this$props.mode,
+	          blob = _this$props.blob,
+	          input = _this$props.input,
+	          log = _this$props.log;
 	
 	      var onFinished = function onFinished(result) {
 	        if (typeof onSuccess === 'function') {
@@ -21659,14 +21699,14 @@
 	    value: function componentDidMount() {
 	      var filepicker = __webpack_require__(174);
 	
-	      var _props = this.props;
-	      var apikey = _props.apikey;
-	      var buttonText = _props.buttonText;
-	      var buttonClass = _props.buttonClass;
-	      var onSuccess = _props.onSuccess;
-	      var options = _props.options;
-	      var mode = _props.mode;
-	      var log = _props.log;
+	      var _props = this.props,
+	          apikey = _props.apikey,
+	          buttonText = _props.buttonText,
+	          buttonClass = _props.buttonClass,
+	          onSuccess = _props.onSuccess,
+	          options = _props.options,
+	          mode = _props.mode,
+	          log = _props.log;
 	
 	      var custom = this.fpButton;
 	      if (!custom) {
@@ -21697,12 +21737,12 @@
 	    value: function render() {
 	      var _this2 = this;
 	
-	      var _props2 = this.props;
-	      var defaultWidget = _props2.defaultWidget;
-	      var buttonClass = _props2.buttonClass;
-	      var buttonText = _props2.buttonText;
-	      var link = _props2.link;
-	      var options = _props2.options;
+	      var _props2 = this.props,
+	          defaultWidget = _props2.defaultWidget,
+	          buttonClass = _props2.buttonClass,
+	          buttonText = _props2.buttonText,
+	          link = _props2.link,
+	          options = _props2.options;
 	
 	      if (defaultWidget) {
 	        return _react2.default.createElement('input', {
@@ -21752,8 +21792,8 @@
 	  }
 	};
 	ReactFilepicker.propTypes = {
-	  blob: _react.PropTypes.object,
-	  input: _react.PropTypes.any,
+	  blob: _react.PropTypes.objectOf(_react.PropTypes.any),
+	  input: _react.PropTypes.objectOf(_react.PropTypes.any),
 	  apikey: _react.PropTypes.string.isRequired,
 	  defaultWidget: _react.PropTypes.bool,
 	  link: _react.PropTypes.bool,
