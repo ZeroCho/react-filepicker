@@ -1,7 +1,7 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
-var loaders = [
+const loaders = [
   { test: /\.jsx?$/, loader: 'babel', exclude: /node_modules/ },
   {
     test: /\.css/,
