@@ -21,7 +21,8 @@
   },
   "plugins": [
     "react",
-    "jsx-a11y"
+    "jsx-a11y",
+    "babel"
   ],
   "env": {
     "browser": true,
