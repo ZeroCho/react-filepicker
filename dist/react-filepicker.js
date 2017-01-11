@@ -162,6 +162,14 @@ function(module, exports, __webpack_require__) {
         } ]), ReactFilepicker;
     }(_react.Component);
     ReactFilepicker.defaultProps = {
+        blob: null,
+        input: null,
+        link: !1,
+        buttonText: "",
+        buttonClass: "",
+        onSuccess: null,
+        onProgress: null,
+        onError: null,
         defaultWidget: !0,
         mode: "pick",
         log: !1,
