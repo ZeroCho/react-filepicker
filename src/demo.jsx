@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </form>
       <hr />
       <form>
-        <div>Multiple files updaload</div>
+        <div>Multiple files upload</div>
         <ReactFilepicker apikey={apikey} mode="pickMultiple" onSuccess={callback} />
       </form>
       <hr />
