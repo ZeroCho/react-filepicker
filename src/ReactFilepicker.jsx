@@ -3,6 +3,14 @@ import applyOptions from './options';
 
 class ReactFilepicker extends Component {
   static defaultProps = {
+    blob: null,
+    input: null,
+    link: false,
+    buttonText: '',
+    buttonClass: '',
+    onSuccess: null,
+    onProgress: null,
+    onError: null,
     defaultWidget: true,
     mode: 'pick',
     log: false,
