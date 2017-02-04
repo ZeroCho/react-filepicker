@@ -1,4 +1,6 @@
 # React Filepicker
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/ZeroCho/react-filepicker.svg)](https://greenkeeper.io/)
 react component for **filepicker**(a.k.a **filestack**)
 
 ## How to install
