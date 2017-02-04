@@ -55,7 +55,7 @@
     "react-dom": "latest",
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
-    "webpack": "^1.14.0"
+    "webpack": "^2.2.1"
   },
   "peerDependencies": {
     "react": "^15.3.0",
