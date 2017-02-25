@@ -17,6 +17,7 @@ module.exports = [{
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'react-filepicker.js',
+    libraryTarget: 'commonjs2',
   },
   devtool: 'source-map',
   resolve: {
@@ -34,7 +35,7 @@ module.exports = [{
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       compress: {
-        warnings: true,
+        warnings: false,
       },
     }),
     new webpack.ProvidePlugin({
@@ -64,7 +65,7 @@ module.exports = [{
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       compress: {
-        warnings: true,
+        warnings: false,
       },
     }),
     new webpack.ProvidePlugin({
