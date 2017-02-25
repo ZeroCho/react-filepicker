@@ -1,6 +1,6 @@
 {
   "name": "react-filepicker",
-  "version": "0.10.9",
+  "version": "0.10.10",
   "main": "dist/react-filepicker.js",
   "description": "react component for filepicker(a.k.a filestack)",
   "scripts": {
