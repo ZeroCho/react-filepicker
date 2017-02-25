@@ -1,12 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
+const fs = require('fs');
 
-const loaders = [
-  { test: /\.jsx?$/, loader: 'babel', exclude: /node_modules/ },
+const rules = [
+  { test: /\.jsx?$/, loader: 'babel-loader', exclude: /node_modules/ },
   {
     test: /\.css/,
-    loaders: [
-      'style?sourcemap', 'css?modules&importLoaders=1',
+    use: [
+      'style-loader?sourcemap', 'css-loader?modules&importLoaders=1',
     ],
   },
 ];
@@ -16,21 +17,24 @@ module.exports = [{
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'react-filepicker.js',
-    libraryTarget: 'commonjs2',
   },
   devtool: 'source-map',
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    modules: ['node_modules', 'src'],
+    extensions: ['.js', '.json', '.jsx'],
   },
-  module: { loaders },
-  externals: ['react', 'react-dom'],
+  module: { rules },
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
     new webpack.optimize.UglifyJsPlugin({
-      beautify: true,
-      comments: true,
-      mangle: false,
+      sourceMap: true,
       compress: {
-        dead_code: true,
+        warnings: true,
       },
     }),
     new webpack.ProvidePlugin({
@@ -46,10 +50,23 @@ module.exports = [{
   },
   devtool: 'source-map',
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    modules: ['node_modules', 'src'],
+    extensions: ['.json', '.js', '.jsx'],
   },
-  module: { loaders },
+  module: { rules },
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: true,
+      },
+    }),
     new webpack.ProvidePlugin({
       filepicker: 'filepicker-js',
       'window.filepicker': 'filepicker-js',
