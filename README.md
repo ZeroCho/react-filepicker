@@ -3,10 +3,10 @@ react component for **filepicker**(a.k.a **filestack**)
 
 ## How to install
 
-Live Demo
-[Link](https://zerocho.herokuapp.com/portfolio/ReactFilepicker)
-NPM
-[Link](https://npmjs.com/package/react-filepicker)
+**This is for v2 old filepicker api. If you want latest v3 filestack api, go [here](https://npmjs.com/package/react-filestack)**
+[Live Demo](https://zerocho.herokuapp.com/portfolio/ReactFilepicker)
+[NPM](https://npmjs.com/package/react-filepicker)
+[Github](https://github.com/zerocho/react-filepicker)
 ```
 npm install react-filepicker
 ```
