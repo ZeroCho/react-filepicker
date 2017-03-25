@@ -38,6 +38,10 @@ module.exports = [{
         warnings: false,
       },
     }),
+    new webpack.ProvidePlugin({
+      filepicker: 'filepicker-js',
+      'window.filepicker': 'filepicker-js'
+    }),
   ],
 }, {
   entry: './src/demo.jsx',
@@ -63,6 +67,10 @@ module.exports = [{
       compress: {
         warnings: false,
       },
+    }),
+    new webpack.ProvidePlugin({
+      filepicker: 'filepicker-js',
+      'window.filepicker': 'filepicker-js'
     }),
   ],
 }];

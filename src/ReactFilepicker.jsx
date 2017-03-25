@@ -136,7 +136,8 @@ class ReactFilepicker extends Component {
       element.onchange = (e) => {
         if (typeof onSuccess === 'function') {
           onSuccess(e.fpfiles.length === 1 ? e.fpfile : e.fpfiles);
-        } else if (log) {
+        }
+        if (log) {
           console.log(e.fpfile);
         }
       };
@@ -154,21 +155,24 @@ class ReactFilepicker extends Component {
     const onFinished = (result) => {
       if (typeof onSuccess === 'function') {
         onSuccess(result);
-      } else if (log) {
+      }
+      if (log) {
         console.log(result);
       }
     };
     const onFail = (error) => {
       if (typeof onError === 'function') {
         onError(error);
-      } else if (log) {
+      }
+      if (log) {
         console.error(error);
       }
     };
     const onUploading = (progress) => {
       if (typeof onProgress === 'function') {
         onProgress(progress);
-      } else if (log) {
+      }
+      if (log) {
         console.log(progress);
       }
     };
@@ -213,7 +217,6 @@ class ReactFilepicker extends Component {
     const Tag = link ? 'a' : 'button';
     return (
       <Tag
-        name="filepicker"
         ref={(c) => {
           this.fpButton = c;
         }}
