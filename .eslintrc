@@ -10,7 +10,6 @@
     }
   },
   "rules": {
-    "linebreak-style": ["error", "windows"],
     "import/no-unresolved": 0,
     "global-require": 0,
     "no-console": 0,
@@ -20,7 +19,8 @@
       {
         "props": false
       }
-    ]
+    ],
+    "object-curly-newline": ["error", { "multiline": true }]
   },
   "plugins": [
     "react",
